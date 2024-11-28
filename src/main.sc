@@ -1,18 +1,20 @@
-// Определение намерения "Привет"
-intent('Привет', (p) => {
-  p.play('Привет!');
+// Assuming JAICP has a compatible API for intents and states
+
+// Define the intent for 'Привет'
+bot.intent('Привет', (session) => {
+  session.reply('Привет!');
 });
 
-// Стартовое состояние диалога
-state('start', (p) => {
-  p.play('Здравствуйте Как я могу вам помочь?');
-  p.transition('await_greeting');
+// Define the start state
+bot.state('start', (session) => {
+  session.reply('Здравствуйте Как я могу вам помочь?');
+  session.transition('await_greeting');
 });
 
-// Состояние ожидания приветствия
-state('await_greeting', (p) => {
-  p.match('Привет', (p) => {
-    p.play('Привет!');
-    p.transition('start'); // Возвращаемся в начальное состояние
+// Define the await_greeting state
+bot.state('await_greeting', (session) => {
+  session.match('Привет', (session) => {
+    session.reply('Привет!');
+    session.transition('start');
   });
 });
