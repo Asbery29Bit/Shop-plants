@@ -9,6 +9,7 @@ theme: /
         buttons:
             {text: "Наш сайт", url: "https://elovpark.ru/"}
             "Сделать заказ" -> /Приветствие
+        go!: /Действие
         event: noMatch || toState = "./"
 
     state: Не понял
@@ -18,5 +19,6 @@ theme: /
     state: Действие
         intent!: /Оформление заказа
         a: Оформление заказа
+        intent: /Оформление заказа || toState = "/Действие"
 
     state: Описание
