@@ -9,7 +9,7 @@ theme: /
         buttons:
             {text: "Наш сайт", url: "https://elovpark.ru/"}
             "Сделать заказ" -> /Приветствие
-        intent: /sys/aimylogic/ru/hello || toState = "/Приветствие"
+        event: noMatch || toState = "./"
 
     state: Не понял
         event!: noMatch
@@ -19,4 +19,3 @@ theme: /
         intent!: Оформление заказа
         a: Оформление заказа
         a: /Оформление заказа
-
