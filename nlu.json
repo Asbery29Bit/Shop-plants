@@ -66,37 +66,44 @@
       "name" : "Имя_растения",
       "entity" : "Имя_растения",
       "required" : true,
-      "prompts" : [ ]
+      "prompts" : [ ],
+      "array" : false
     }, {
       "name" : "Размер",
       "entity" : "Размер",
       "required" : true,
-      "prompts" : [ ]
+      "prompts" : [ ],
+      "array" : false
     }, {
       "name" : "Световые_условия",
       "entity" : "Световые_условия",
       "required" : true,
-      "prompts" : [ ]
+      "prompts" : [ ],
+      "array" : false
     }, {
       "name" : "Температура",
       "entity" : "Температура",
       "required" : true,
-      "prompts" : [ ]
+      "prompts" : [ ],
+      "array" : false
     }, {
       "name" : "Цвет",
       "entity" : "Цвет",
       "required" : true,
-      "prompts" : [ ]
+      "prompts" : [ ],
+      "array" : false
     }, {
       "name" : "Цена",
       "entity" : "Цена",
       "required" : true,
-      "prompts" : [ ]
+      "prompts" : [ ],
+      "array" : false
     }, {
       "name" : "Частота_полива",
       "entity" : "Частота_полива",
       "required" : true,
-      "prompts" : [ ]
+      "prompts" : [ ],
+      "array" : false
     } ],
     "priority" : 0
   }, {
@@ -119,37 +126,44 @@
       "name" : "Имя_растения",
       "entity" : "Имя_растения",
       "required" : true,
-      "prompts" : [ ]
+      "prompts" : [ ],
+      "array" : false
     }, {
       "name" : "Размер",
       "entity" : "Размер",
       "required" : true,
-      "prompts" : [ ]
+      "prompts" : [ ],
+      "array" : false
     }, {
       "name" : "Световые_условия",
       "entity" : "Световые_условия",
       "required" : true,
-      "prompts" : [ ]
+      "prompts" : [ ],
+      "array" : false
     }, {
       "name" : "Температура",
       "entity" : "Температура",
       "required" : true,
-      "prompts" : [ ]
+      "prompts" : [ ],
+      "array" : false
     }, {
       "name" : "Цвет",
       "entity" : "Цвет",
       "required" : true,
-      "prompts" : [ ]
+      "prompts" : [ ],
+      "array" : false
     }, {
       "name" : "Цена",
       "entity" : "Цена",
       "required" : true,
-      "prompts" : [ ]
+      "prompts" : [ ],
+      "array" : false
     }, {
       "name" : "Частота_полива",
       "entity" : "Частота_полива",
       "required" : true,
-      "prompts" : [ ]
+      "prompts" : [ ],
+      "array" : false
     } ],
     "priority" : 0
   }, {
@@ -172,12 +186,14 @@
       "name" : "Имя_растения",
       "entity" : "Имя_растения",
       "required" : true,
-      "prompts" : [ ]
+      "prompts" : [ ],
+      "array" : false
     }, {
       "name" : "Цена",
       "entity" : "Цена",
       "required" : true,
-      "prompts" : [ ]
+      "prompts" : [ ],
+      "array" : false
     } ],
     "priority" : 0
   } ],
