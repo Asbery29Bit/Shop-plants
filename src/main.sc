@@ -15,13 +15,17 @@ theme: /
         event!: noMatch
         a: Извините, я не понял.
 
-    state("Действие") {
+    state: Действие
+    {
     activators {
         intent("/Покажи интенданты") // Обработка интента
     }
-
+        
         reactions.say("Вот доступные интенты:")
         intentsList.forEach { intent ->
             reactions.say("- $intent")
+        }
+
+        reactions.buttons("Назад", "Ещё что-то")
         }
     }
