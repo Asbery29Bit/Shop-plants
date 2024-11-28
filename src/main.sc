@@ -1,13 +1,12 @@
-# Define the intent for 'Привет'
-intent: Привет
+theme: magazin_rastenij
 
-# Define the start state
-state: start
-  a: Здравствуйте Как я могу вам помочь?
-  go: await_greeting
+  intent: Привет
 
-# Define the await_greeting state
-state: await_greeting
-  q: Привет
-    a: Привет!
-    go: start
+  state: start
+    a: Здравствуйте Как я могу вам помочь?
+    go: await_greeting
+
+  state: await_greeting
+    q: Привет
+      a: Привет!
+      go: start
