@@ -24,17 +24,6 @@
     }
   },
   "intents" : [ {
-    "path" : "/Покажи интенданты",
-    "enabled" : true,
-    "shared" : false,
-    "phrases" : [ {
-      "text" : "Покажи интенданты"
-    } ],
-    "classificationRules" : {
-      "refs" : [ ]
-    },
-    "priority" : 0
-  }, {
     "path" : "/Приветствие",
     "enabled" : true,
     "shared" : false,
@@ -207,6 +196,14 @@
       "prompts" : [ ],
       "array" : false
     } ],
+    "priority" : 0
+  }, {
+    "path" : "/Новый интент",
+    "enabled" : true,
+    "shared" : false,
+    "classificationRules" : {
+      "refs" : [ ]
+    },
     "priority" : 0
   } ],
   "entities" : [ {
