@@ -1,12 +1,31 @@
-theme: magazin_rastenij
+bot:
+  token: YOUR_TELEGRAM_BOT_TOKEN
+  start_message: Welcome to the sample bot!
 
-  intent: Привет
+states:
+  START:
+    actions:
+      - type: send_message
+        text: "Choose an option:"
+      - type: show_keyboard
+        options:
+          - text: Show random number
+            target_state: RANDOM_NUMBER
+          - text: Tell a joke
+            target_state: JOKE
 
-  state: start
-      a: Здравствуйте Как я могу вам помочь?
-      go: magazin_rastenij/await_greeting
+  RANDOM_NUMBER:
+    actions:
+      - type: send_random_number
+        min: 1
+        max: 100
+        text: "Here's a random number between 1 and 100: {}"
+      - type: back_to_start
+        text: Back to main menu
 
-  state: await_greeting
-    q: Привет
-      a: Привет!
-      go: start
+  JOKE:
+    actions:
+      - type: send_joke
+        text: "Here's a funny joke: {}"
+      - type: back_to_start
+        text: Back to main menu
