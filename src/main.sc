@@ -18,4 +18,8 @@ theme: /
     state: Действие
         intent!: /Покажи интенданты
         a: Вот доступные интенты:
-        a: ${intentsList}  # Здесь переменная будет подставлена в ответ
+    script:
+        intentsList.forEach { intent ->
+            reactions.say("- $intent")
+        }
+
