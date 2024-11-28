@@ -1,25 +1,13 @@
-{
-  "intents": [
-    {
-      "name": "Привет",
-      "utterances": [
-        "Привет",
-        "Здравствуйте",
-        "Хай"
-      ]
-    }
-  ],
-  "states": [
-    {
-      "name": "start",
-      "message": "Здравствуйте Как я могу вам помочь?",
-      "transition": "await_greeting"
-    },
-    {
-      "name": "await_greeting",
-      "match": "Привет",
-      "response": "Привет!",
-      "transition": "start"
-    }
-  ]
-}
+# Define the intent for 'Привет'
+intent: Привет
+
+# Define the start state
+state: start
+  a: Здравствуйте Как я могу вам помочь?
+  go: await_greeting
+
+# Define the await_greeting state
+state: await_greeting
+  q: Привет
+    a: Привет!
+    go: start
