@@ -173,11 +173,7 @@
     "enabled" : true,
     "shared" : false,
     "phrases" : [ {
-      "text" : "Заказать растение"
-    }, {
-      "text" : "Купить растение"
-    }, {
-      "text" : "Оформить заказ"
+      "text" : "Оформление заказа"
     } ],
     "classificationRules" : {
       "refs" : [ ]
