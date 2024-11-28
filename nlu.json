@@ -12,7 +12,8 @@
     "extendedSettings" : {
       "classificationAlgorithmVersion" : 1.0,
       "tokenizerEngine" : "mystem",
-      "useShared" : false
+      "useShared" : true,
+      "zflPatternsEnabled" : true
     },
     "shared" : false,
     "validation" : {
@@ -23,6 +24,17 @@
     }
   },
   "intents" : [ {
+    "path" : "/Покажи интенданты",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "Покажи интенданты"
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "priority" : 0
+  }, {
     "path" : "/Приветствие",
     "enabled" : true,
     "shared" : false,
