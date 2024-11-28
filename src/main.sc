@@ -16,16 +16,9 @@ theme: /
         a: Извините, я не понял.
 
     state: Действие
-    {
-    activators {
-        intent("/Покажи интенданты") // Обработка интента
-    }
-        
-        reactions.say("Вот доступные интенты:")
+    q!: /Покажи интенданты
+    a: Вот доступные интенты:
+    script:
         intentsList.forEach { intent ->
             reactions.say("- $intent")
         }
-
-        reactions.buttons("Назад", "Ещё что-то")
-        }
-    }
