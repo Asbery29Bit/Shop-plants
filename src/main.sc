@@ -9,8 +9,6 @@ theme: /
         buttons:
             {text: "Наш сайт", url: "https://elovpark.ru/"}
             "Сделать заказ" -> /Приветствие
-        if: 
-        else: 
         event: noMatch || toState = "./"
 
     state: Не понял
