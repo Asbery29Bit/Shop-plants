@@ -8,9 +8,10 @@ theme: /
             a: Здравствуй друг,купи растеньице
         buttons:
             {text: "Наш сайт", url: "https://elovpark.ru/"}
-        intent: /Оформление заказа  toState = "/Действие"
-        event: smsFailedEvent  toState = "./"
-        event: noMatch  toState = "./"
+        script:
+            
+        if: 
+        event: noMatch || toState = "./"
 
     state: Не понял
         event!: noMatch
@@ -19,7 +20,6 @@ theme: /
     state: Действие
         intent!: /Оформление заказа
         a: Оформление заказа
-        intent: /Информация о растении  toState = "./"
         event: noMatch || toState = "./"
 
     state: Описание

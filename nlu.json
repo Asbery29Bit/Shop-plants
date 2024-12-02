@@ -199,14 +199,6 @@
       "array" : false
     } ],
     "priority" : 0
-  }, {
-    "path" : "/Новый интент",
-    "enabled" : true,
-    "shared" : false,
-    "classificationRules" : {
-      "refs" : [ ]
-    },
-    "priority" : 0
   } ],
   "entities" : [ {
     "entity" : {
