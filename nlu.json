@@ -24,6 +24,24 @@
     }
   },
   "intents" : [ {
+    "path" : "/Да",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "кверти"
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "slots" : [ {
+      "name" : "Алоэ",
+      "entity" : "Имя_растения",
+      "required" : true,
+      "prompts" : [ ]
+    } ],
+    "priority" : 0
+  }, {
     "path" : "/Приветствие",
     "enabled" : true,
     "shared" : false,
@@ -185,19 +203,7 @@
       "refs" : [ ]
     },
     "patterns" : [ ],
-    "slots" : [ {
-      "name" : "Имя_растения",
-      "entity" : "Имя_растения",
-      "required" : true,
-      "prompts" : [ ],
-      "array" : false
-    }, {
-      "name" : "Цена",
-      "entity" : "Цена",
-      "required" : true,
-      "prompts" : [ ],
-      "array" : false
-    } ],
+    "slots" : [ ],
     "priority" : 0
   } ],
   "entities" : [ {
