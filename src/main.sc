@@ -1,41 +1,25 @@
-// Интенты
-intent("choose_plant", "Посоветуй растение", "Что выбрать?", "Помоги подобрать цветы")
+theme: /
 
-intent("plant_care", "Как ухаживать за растением?", "Расскажи об уходе", "Что делать с цветком после покупки?")
+    state: Приветствие
+        q!: $regex</start>
+        random: 
+            a: Добрый день!
+            a: ХЕЛЛОУ МАЗАФАКЕР
+            a: Здравствуй друг,купи растеньице
+        buttons:
+            {text: "Наш сайт", url: "https://elovpark.ru/"}
+        intent: /Оформление заказа  toState = "/Действие"
+        event: smsFailedEvent  toState = "./"
+        event: noMatch  toState = "./"
 
-// Сценарий выбора растения
-+choose_plant
-    // Приветствие
-    // Ввод цели выбора растения
-    "Для чего вам нужно растение? Дом, офис или подарок?"
-    buttons ("Дом", "Офис", "Подарок")
-    $purpose = input()
+    state: Не понял
+        event!: noMatch
+        a: Извините, я не понял.
 
-    // Ввод предпочтений по цвету
-    "Какие у вас предпочтения по цвету?"
-    $color = input()
+    state: Действие
+        intent!: /Оформление заказа
+        a: Оформление заказа
+        intent: /Информация о растении  toState = "./"
+        event: noMatch || toState = "./"
 
-    // Ввод предпочтений по уходу
-    "Какие у вас предпочтения по уходу? Минимальный или стандартный?"
-    buttons ("Минимальный", "Стандартный")
-    $care = input()
-
-    // Рекомендация растений
-    $recommendations = recommendPlants($purpose, $color, $care)
-    "Спасибо за информацию! Рекомендую следующие растения: $recommendations."
-
-// Сценарий ухода за растением
-+plant_care
-    "Растения требуют разного ухода. Напишите название растения, и я подскажу, что делать."
-    $plantName = input()
-    "Рекомендации по уходу за растением '$plantName' отправлены на ваш email."
-
-// Функция для рекомендации растений
-$global function recommendPlants(purpose, color, care) {
-    var plants = [
-        {"name": "Фикус", "purpose": "Дом", "color": "зелёный", "care": "Минимальный"},
-        {"name": "Орхидея", "purpose": "Подарок", "color": "белый", "care": "Стандартный"}
-    ]
-    var result = plants.filter(p => p.purpose == purpose && p.color.includes(color) && p.care == care)
-    return result.map(p => p.name).join(", ")
-}
+    state: Описание
