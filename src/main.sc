@@ -1,69 +1,41 @@
 // Интенты
-intent("choose_plant") {
-    examples = [
-        "Посоветуй растение",
-        "Что выбрать?",
-        "Помоги подобрать цветы"
-    ]
-}
+intent("choose_plant", "Посоветуй растение", "Что выбрать?", "Помоги подобрать цветы")
 
-intent("plant_care") {
-    examples = [
-        "Как ухаживать за растением?",
-        "Расскажи об уходе",
-        "Что делать с цветком после покупки?"
-    ]
-}
+intent("plant_care", "Как ухаживать за растением?", "Расскажи об уходе", "Что делать с цветком после покупки?")
 
 // Сценарий выбора растения
-+ choose_plant {
++choose_plant
     // Приветствие
-    #say "Для чего вам нужно растение? Дом, офис или подарок?"
-    buttons {
-        "Дом" -> {
-            #setContext("purpose", "Дом")
-        }
-        "Офис" -> {
-            #setContext("purpose", "Офис")
-        }
-        "Подарок" -> {
-            #setContext("purpose", "Подарок")
-        }
-    }
+    // Ввод цели выбора растения
+    "Для чего вам нужно растение? Дом, офис или подарок?"
+    buttons ("Дом", "Офис", "Подарок")
+    $purpose = input()
 
-    // Спрашиваем цвет
-    #say "Какие у вас предпочтения по цвету?"
+    // Ввод предпочтений по цвету
+    "Какие у вас предпочтения по цвету?"
     $color = input()
 
-    // Спрашиваем уход
-    #say "Какие у вас предпочтения по уходу? Минимальный или стандартный?"
-    buttons {
-        "Минимальный" -> {
-            #setContext("care", "Минимальный")
-        }
-        "Стандартный" -> {
-            #setContext("care", "Стандартный")
-        }
-    }
+    // Ввод предпочтений по уходу
+    "Какие у вас предпочтения по уходу? Минимальный или стандартный?"
+    buttons ("Минимальный", "Стандартный")
+    $care = input()
 
     // Рекомендация растений
-    #exec recommendPlants purpose=$purpose color=$color care=$care -> $result
-    #say "Спасибо за информацию! Рекомендую следующие растения: $result."
-}
+    $recommendations = recommendPlants($purpose, $color, $care)
+    "Спасибо за информацию! Рекомендую следующие растения: $recommendations."
 
 // Сценарий ухода за растением
-+ plant_care {
-    #say "Растения требуют разного ухода. Напишите название растения, и я подскажу, что делать."
++plant_care
+    "Растения требуют разного ухода. Напишите название растения, и я подскажу, что делать."
     $plantName = input()
-    #say "Рекомендации по уходу за растением '$plantName' отправлены на ваш email."
-}
+    "Рекомендации по уходу за растением '$plantName' отправлены на ваш email."
 
 // Функция для рекомендации растений
-$function recommendPlants(purpose, color, care) {
+$global function recommendPlants(purpose, color, care) {
     var plants = [
         {"name": "Фикус", "purpose": "Дом", "color": "зелёный", "care": "Минимальный"},
         {"name": "Орхидея", "purpose": "Подарок", "color": "белый", "care": "Стандартный"}
     ]
-    var result = plants.filter(p => p.purpose == purpose && p.color.contains(color) && p.care == care)
+    var result = plants.filter(p => p.purpose == purpose && p.color.includes(color) && p.care == care)
     return result.map(p => p.name).join(", ")
 }
