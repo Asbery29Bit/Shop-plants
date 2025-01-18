@@ -1,12 +1,16 @@
-state: Start
-    q!: /start
-    script:
-        $context.session = {};
-        $context.client = {};
-        $context.temp = {};
-        $context.response = {};
-    a: Привет! Я бот-магазин растений. Помогу вам выбрать и заказать растения.
-    go!: /ChooseCity
+theme: /
+
+    state: Приветствие
+        q!: $regex</start>
+        random: 
+            a: Добрый день!
+            a: Здравствуй друг,купи растеньице
+        buttons:
+            {text: "Наш сайт", url: "https://elovpark.ru/"}
+        buttons:
+            "Выбрать растение" -> /Фильтры
+        intent: /sys/aimylogic/ru/parting || toState = "/Проверка"
+        event: noMatch || toState = "./"
 
     state: Не понял
         event!: noMatch
