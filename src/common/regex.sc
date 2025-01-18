@@ -1,0 +1,4 @@
+sc
+$regex = \{
+    start: "^/start$"
+\}
