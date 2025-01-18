@@ -12,6 +12,7 @@
     "extendedSettings" : {
       "classificationAlgorithmVersion" : 1.0,
       "tokenizerEngine" : "mystem",
+      "allowedPatterns" : [ ],
       "useShared" : true,
       "zflPatternsEnabled" : true
     },
@@ -63,6 +64,14 @@
     "enabled" : true,
     "shared" : false,
     "phrases" : [ {
+      "text" : "Растение для комнаты"
+    }, {
+      "text" : "Большое"
+    }, {
+      "text" : "Маленькое"
+    }, {
+      "text" : "Недорогое"
+    }, {
       "text" : "Найти растение по названию"
     }, {
       "text" : "Какие растения подходят для тени?"
