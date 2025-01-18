@@ -1,3 +1,5 @@
+sc
+import $regex from "common/regex"
 theme: /
 
     state: Start
