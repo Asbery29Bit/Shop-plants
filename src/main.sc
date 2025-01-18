@@ -1,7 +1,5 @@
 theme: /
 
-import $regex from "common/regex"
-
 state: Start
     q!: /start
     script:
@@ -10,94 +8,59 @@ state: Start
         $context.temp = {};
         $context.response = {};
     a: Привет! Я бот-магазин растений. Помогу вам выбрать и заказать растения.
+    go!: /ChooseCity
+
+state: Приветствие
+    q!: $regex</start>
+    random: 
+        a: Добрый день!
+        a: Здравствуй друг, купи растеньице
     buttons:
         {text: "Наш сайт", url: "https://elovpark.ru/"}
-        Выбрать растение -> ChooseCity
-
-state: ChooseCity
-    a: Выберите ваш город.
     buttons:
-        Москва -> RememberCity
-        Санкт-Петербург -> RememberCity
+        "Выбрать растение" -> /Фильтры
+    intent: /sys/aimylogic/ru/parting || toState = "/Проверка"
+    event: noMatch || toState = "./"
 
-state: RememberCity
-    script:
-        $client.city = $request.query;
-        $session.cart = [];
-    go!: ChoosePlant
+state: Не понял
+    event!: noMatch
+    a: Извините, я не понял.
 
-state: ChoosePlant
-    a: Выберите растение.
-    buttons:
-        Фикус -> SelectVariation
-        Кактус -> SelectVariation
-        Орхидея -> SelectVariation
+state: Действие
+    intent!: /Оформление заказа
+    a: Оформление заказа
+    intent: /Информация о растении || toState = "./"
+    event: noMatch || toState = "./"
 
-state: SelectVariation
-    script:
-        $client.plant = $request.query;
-    a: Выберите размер растения.
-    buttons:
-        Маленький -> AddToCart
-        Средний -> AddToCart
-        Большой -> AddToCart
+state: Критерии выбора
+    a: Какие у вас предпочтения?
+    intent: /Оформление заказа || toState = "./"
+    event: noMatch || toState = "./"
 
-state: AddToCart
-    script:
-        var plant = $client.plant;
-        var size = $request.query;
-        var price = 0;
-        if (plant === "Фикус") {
-            if (size === "Маленький") price = 500;
-            if (size === "Средний") price = 1000;
-            if (size === "Большой") price = 1500;
-        } else if (plant === "Кактус") {
-            if (size === "Маленький") price = 300;
-            if (size === "Средний") price = 600;
-            if (size === "Большой") price = 900;
-        } else if (plant === "Орхидея") {
-            if (size === "Маленький") price = 700;
-            if (size === "Средний") price = 1400;
-            if (size === "Большой") price = 2100;
-        }
-        $session.cart.push({plant: plant, size: size, price: price});
-    a: Растение добавлено в корзину. Хотите выбрать еще одно растение?
-    buttons:
-        Да -> ChoosePlant
-        Нет -> Checkout
-
-state: Checkout
-    script:
-        var total = 0;
-        var orderDetails = "Ваш заказ:\n";
-        $session.cart.forEach(function(item) {
-            orderDetails += `${item.plant} (${item.size}) - ${item.price} руб.\n`;
-            total += item.price;
-        });
-        orderDetails += `Итого: ${total} руб.`;
-        $response.replies.push({type: "text", text: orderDetails});
-    a: Спасибо за заказ! Наш менеджер свяжется с вами для подтверждения.
-    go!: End
-
-state: End
-    q: *
-    a: Спасибо за использование нашего бота!
-
-state: Filters
-    a: Вы можете написать название желаемого растения или выбрать по критериям:
-        - Размер (большой, средний, маленький)
-        - Цена
-        - Световые условия (тень, полутень, умеренные, яркие)
-        - Цвет
-        - Частота полива (регулярная, редкая, умеренная)
-        - Температура (прохладная, комнатная, теплая)
-    buttons:
-        Вернуться в начало -> Start
-
-state: PlantInfo
+state: Вывод растения
     q!: * @Имя_растения *
     a: Название продукта: {{ $parseTree.Имя_растения.name }}
 
-state: NoMatch
-    event!: noMatch
-    a: Извините, я не понял. Попробуйте снова.
+state: Поиск растения
+    intent: /Поиск растений || toState = "./"
+    event: noMatch || toState = "./"
+    a: Пожалуйста, опишите, что бы вы хотели?
+
+state: Фильтры
+    q: * @Размер * || toState = "/Фильтры"
+    event: noMatch || toState = "/Фильтры"
+    q: * @Цена * || toState = "/Фильтры"
+    a: Вы можете написать название желаемого растения или же выбрать растение по одному из следующих критериев:
+        - Размер (большой, средний, маленький)
+        - Цена
+        - Световые условия (тень, полутень, умеренные, ярко)
+        - Цвет
+        - Частота полива (регулярная, редкая, умеренная)
+        - Температура (прохладная, комнатная, теплая)
+    q: * @Световые_условия * || toState = "/Фильтры"
+    q: * @Температура * || toState = "/Фильтры"
+    q: * @Цвет * || toState = "/Проверка"
+    q: * @Частота_полива * || toState = "/Фильтры"
+
+state: Проверка
+    a: Например:
