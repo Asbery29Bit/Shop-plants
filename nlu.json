@@ -271,33 +271,6 @@
     } ]
   }, {
     "entity" : {
-      "name" : "Цвет",
-      "enabled" : true,
-      "shared" : false,
-      "type" : "annotation",
-      "priority" : 1,
-      "noSpelling" : true,
-      "noMorph" : false,
-      "phoneticSearch" : false,
-      "fuzzySearch" : false,
-      "client" : false,
-      "hidden" : false
-    },
-    "records" : [ {
-      "type" : "synonyms",
-      "rule" : [ "Белый" ],
-      "value" : ""
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "Серебристо-зеленый" ],
-      "value" : ""
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "Зеленый" ],
-      "value" : ""
-    } ]
-  }, {
-    "entity" : {
       "name" : "Имя_растения",
       "enabled" : true,
       "shared" : false,
@@ -457,6 +430,29 @@
     }, {
       "type" : "synonyms",
       "rule" : [ "3000 руб." ],
+      "value" : ""
+    } ]
+  }, {
+    "entity" : {
+      "name" : "Color",
+      "enabled" : true,
+      "shared" : false,
+      "type" : "annotation",
+      "priority" : 1,
+      "noSpelling" : true,
+      "noMorph" : false,
+      "phoneticSearch" : false,
+      "fuzzySearch" : false,
+      "client" : false,
+      "hidden" : false
+    },
+    "records" : [ {
+      "type" : "synonyms",
+      "rule" : [ "Green" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Белый" ],
       "value" : ""
     } ]
   } ],
