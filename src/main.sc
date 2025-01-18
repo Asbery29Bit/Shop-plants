@@ -1,12 +1,13 @@
 theme: /
 
     state: Start
+        q!: $regex</start>
         q!: $regex
         script:
             $context.session = \{\};
-            $context.client = \{\};
-            $context.temp = \{\};
-            $context.response = \{\};
+                $context.client = \{\};
+                $context.temp = \{\};
+                $context.response = \{\};
         a: Привет! Я бот-магазин растений. Помогу вам выбрать и заказать растения.
         go!: /ChooseCity
 
