@@ -10,6 +10,35 @@ theme: /
             {text: "Выбрать растение", action: "/Фильтры"}
         intent: /sys/aimylogic/ru/parting || toState = "/Проверка"
         event: noMatch || toState = "./"
+        
+    state: Поиск растения
+        q!: * # Пользовательский текст
+        script:
+            // Ищем критерии
+            var Color = $parseTree.text.match(/Green|Белый/i) ? true : false;
+            var Размер = $parseTree.text.match(/Большой|Средний|Маленький/i);
+            
+            // Пример: Логика фильтрации (подставьте свою логику работы с базой данных)
+            var результат = [];
+            if (Color && Размер) {
+                if (Размер[0] === 'Большой') {
+                    результат = ['Фикус', 'Монстера'];
+                } else if (размер[0] === 'Средний') {
+                    результат = ['Драцена'];
+                }
+            }
+
+            if (результат.length > 0) {
+                $session.myResult = результат.join(", ");
+            } else {
+                $session.myResult = "Подходящие варианты не найдены.";
+            }
+        a: Вот что я нашел по вашему запросу: {{ $session.myResult }}
+        buttons:
+            "Выбрать другое растение" -> /Фильтры
+            "На главную" -> /Приветствие
+        intent: /Оформление заказа || toState = "/Оформление заказа"
+        event: noMatch || toState = "./"    
 
     state: Не понял
         event!: noMatch
