@@ -17,7 +17,7 @@ theme: /
         script:
             var userInput = $parseTree.text ? $parseTree.text.toLowerCase() : '';
             $session.myResult = "Вы сказали: " + userInput + ". Давайте выберем растение!";
-            toState = "/Уточнение цвета";  // Переход к следующему состоянию
+            return { toState: "/Уточнение цвета" };  // Переход к следующему состоянию
         a: {{ $session.myResult }}
         buttons:
             "Дальше" -> /Уточнение цвета
@@ -32,10 +32,10 @@ theme: /
             if (colorMatch) {
                 $session.selectedColor = colorMatch[0];
                 $session.myResult = "Вы выбрали цвет: " + $session.selectedColor + ". Какой размер растения вас интересует? (большой, средний, маленький)";
-                toState = "/Уточнение размера";  // Переход к следующему состоянию
+                return { toState: "/Уточнение размера" };  // Переход к следующему состоянию
             } else {
                 $session.myResult = "Я не распознал цвет. Пожалуйста, укажите цвет растения.";
-                toState = "/Уточнение цвета";  // Остаемся на том же этапе
+                return { toState: "/Уточнение цвета" };  // Остаемся на том же этапе
             }
         a: {{ $session.myResult }}
         buttons:
@@ -51,10 +51,10 @@ theme: /
             if (sizeMatch) {
                 $session.selectedSize = sizeMatch[0];
                 $session.myResult = "Вы выбрали размер: " + $session.selectedSize + ". Какой тип растения вас интересует? (цветок, суккулент, дерево)";
-                toState = "/Уточнение типа";  // Переход к следующему состоянию
+                return { toState: "/Уточнение типа" };  // Переход к следующему состоянию
             } else {
                 $session.myResult = "Я не распознал размер. Пожалуйста, укажите размер растения.";
-                toState = "/Уточнение размера";  // Остаемся на том же этапе
+                return { toState: "/Уточнение размера" };  // Остаемся на том же этапе
             }
         a: {{ $session.myResult }}
         buttons:
@@ -73,9 +73,4 @@ theme: /
                 // Здесь можно добавить логику для поиска растений на основе выбранных параметров
             } else {
                 $session.myResult = "Я не распознал тип. Пожалуйста, укажите тип растения.";
-                toState = "/Уточнение типа";  // Остаемся на том же этапе
-            }
-        a: {{ $session.myResult }}
-        buttons:
-            "На главную" -> /Приветствие
-        event: noMatch || toState = "./"
+               
