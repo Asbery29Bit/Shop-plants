@@ -69,37 +69,37 @@ theme: /
             
             
             
-            if (sizeMatch) {
-                $session.selectedSize = sizeMatch[0];
-                // Здесь можно добавить логику для поиска подходящих растений
-                var availablePlants = [
-                    { name: "Маленький зеленый кактус", color: "зеленый", size: "маленький" },
-                    { name: "Маленький белый цветок", color: "белый", size: "маленький" },
-                    { name: "Маленький красный цветок", color: "красный", size: "маленький" },
-                    { name: "Средний синий цветок", color: "синий", size: "средний" },
-                    { name: "Большой желтый цветок", color: "желтый", size: "большой" },
-                    { name: "Средний зеленый куст", color: "зеленый", size: "средний" },
-                    { name: "Большой красный роза", color: "красный", size: "большой" }
-                ];
-                
-                var matchingPlants = availablePlants.filter(function(plant) {
-                    return plant.color === $session.selectedColor && plant.size === $session.selectedSize;
-                });
-    
-                if (matchingPlants.length > 0) {
-                    var plantNames = matchingPlants.map(function(plant) {
-                        return plant.name;
-                    }).join(", ");
-                    $session.myResult = "Мы можем предложить вам следующие цветы для " + $session.recipient + ": " + plantNames + ". Хотите добавить их в корзину?";
-                    $session.selectedPlants = matchingPlants; // Сохраняем выбранные растения в сессии
-                } else {
-                    $session.myResult = "К сожалению, нет доступных растений с такими параметрами.";
-                }
-                
-                return { toState: "./" };  // Переход к следующему состоянию
+        if (sizeMatch) {
+            $session.selectedSize = sizeMatch[0];
+            // Здесь можно добавить логику для поиска подходящих растений
+            var availablePlants = [
+                { name: "Маленький зеленый кактус", color: "зеленый", size: "маленький" },
+                { name: "Маленький белый цветок", color: "белый", size: "маленький" },
+                { name: "Маленький красный цветок", color: "красный", size: "маленький" },
+                { name: "Средний синий цветок", color: "синий", size: "средний" },
+                { name: "Большой желтый цветок", color: "желтый", size: "большой" },
+                { name: "Средний зеленый куст", color: "зеленый", size: "средний" },
+                { name: "Большой красный роза", color: "красный", size: "большой" }
+            ];
+            
+            var matchingPlants = availablePlants.filter(function(plant) {
+                return plant.color === $session.selectedColor && plant.size === $session.selectedSize;
+            });
+
+            if (matchingPlants.length > 0) {
+                var plantNames = matchingPlants.map(function(plant) {
+                    return plant.name;
+                }).join(", ");
+                $session.myResult = "Мы можем предложить вам следующие цветы для " + $session.recipient + ": " + plantNames + ". Хотите добавить их в корзину?";
+                $session.selectedPlants = matchingPlants; // Сохраняем выбранные растения в сессии
             } else {
-                $session.myResult = "Я не распознал размер. Пожалуйста, укажите размер растения: большой, средний или маленький.";
-                return { toState: "/Уточнение размера" }; // Повторяем вопрос
+                $session.myResult = "К сожалению, нет доступных растений с такими параметрами.";
             }
+            
+            return { toState: "./" };  // Переход к следующему состоянию
+        } else {
+            $session.myResult = "Я не распознал размер. Пожалуйста, укажите размер растения: большой, средний или маленький.";
+            return { toState: "/Уточнение размера" }; // Повторяем вопрос
+        }
     
 
