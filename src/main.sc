@@ -9,8 +9,8 @@ theme: /
             {text: "Наш сайт", url: "https://elovpark.ru/"}
             "Корзина" -> /Корзина
         intent: /sys/aimylogic/ru/parting || toState = "/Проверка"
-        event: noMatch || toState = "./"
-    
+        event: noMatch || toState = "/Обработка ответа"
+
     state: Обработка ответа
         q!: * # Ответ пользователя
         script:
