@@ -137,7 +137,7 @@ theme: /
         script:
             if ($session.cart && $session.cart.length > 0) {
                 $temp.totalSum = 0;
-                for (var i = 0; i < $session.cart.length; i++) \{
+                for (var i = 0; i < $session.cart.length; i++) {
                     var item = $session.cart[i];
                     $reactions.answer(item.name + " - " + item.price + " руб.");
                     $temp.totalSum += item.price;
