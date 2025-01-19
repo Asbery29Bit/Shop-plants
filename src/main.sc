@@ -1,6 +1,6 @@
 theme: /
 
- state: Приветствие
+    state: Приветствие
     q!: $regex</start>
     random: 
         a: Добрый день! Чем могу помочь?
@@ -12,7 +12,7 @@ theme: /
     intent: /sys/aimylogic/ru/parting || toState = "/Проверка"
     event: noMatch || toState = "./"
  
- state: Поиск растения
+    state: Поиск растения
     q!: * # Пользовательский текст
     script:
         if (!$parseTree || !$parseTree.text) {
@@ -49,7 +49,7 @@ theme: /
         "На главную" -> /Приветствие
     event: noMatch || toState = "./"
 
- state: Уточнение цвета
+    state: Уточнение цвета
     q!: * # Пользовательский текст
     script:
         var userInput = $parseTree.text.toLowerCase();
@@ -67,7 +67,7 @@ theme: /
         "На главную" -> /Приветствие
     event: noMatch || toState = "./"
 
- state: Уточнение размера
+    state: Уточнение размера
     q!: * # Пользовательский текст
     script:
         var userInput = $parseTree.text.toLowerCase();
@@ -85,7 +85,7 @@ theme: /
         "На главную" -> /Приветствие
     event: noMatch || toState = "./"
 
- state: Уточнение типа
+    state: Уточнение типа
     q!: * # Пользовательский текст
     script:
         var userInput
