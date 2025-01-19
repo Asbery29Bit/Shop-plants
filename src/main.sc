@@ -124,10 +124,10 @@ theme: /
             });
     
             if (matches.length > 0) {
-                $session.myResult = "Мы нашли подходящие варианты: " + "\n" + matches.map(function(plant) { return plant.name + " (цвет: " + plant.link + ")"; }).join("\n") + ".";
+                $session.myResult = "Мы нашли подходящие варианты: " + "\n" + matches.map(function(plant) { return plant.name + " (ссылка: " + plant.link + ")"; }).join("\n") + ".";
             } else {
                 var randomPlant = plants[Math.floor(Math.random() * plants.length)];
-                $session.myResult += " К сожалению, мы не нашли растений, соответствующих вашим параметрам, но мы можем предложить вам: " + randomPlant.name + " (цвет: " + randomPlant.link + ")" + ".";
+                $session.myResult += " К сожалению, мы не нашли растений, соответствующих вашим параметрам, но мы можем предложить вам: " + randomPlant.name + " (ссылка: " + randomPlant.link + ")" + ".";
             }
         a: {{ $session.myResult }}
         a: Спасибо за ваш выбор!
