@@ -20,11 +20,10 @@ theme: /
             $session.myResult = "Вы сказали: " + userInput + ". Какой цвет вы бы хотели для " + $session.recipient + "?";
             return { toState: "/Уточнение цвета" };  // Переход к следующему состоянию
         a: {{ $session.myResult }}
-        buttons:
-            "Дальше" -> /Уточнение цвета
         event: noMatch || toState = "./"
     
     state: Уточнение цвета
+        a: Какого бы цвета вы хотели цветы?
         q!: * # Пользовательский текст
         script:
             var userInput = $parseTree.text ? $parseTree.text.toLowerCase() : '';
