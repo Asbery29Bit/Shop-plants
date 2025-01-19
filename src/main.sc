@@ -89,3 +89,4 @@ theme: /
             }
         a: {{ $session.myResult }}
         a: Успех
+        event: noMatch || toState = "./"
