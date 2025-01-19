@@ -1,6 +1,6 @@
 theme: /
 
-    state: Приветствие
+state: Приветствие
     q!: $regex</start>
     random: 
         a: Добрый день! Чем могу помочь?
