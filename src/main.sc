@@ -7,14 +7,15 @@ theme: /
             a: Приветствую! Готов помочь вам с выбором растения.
         buttons:
             {text: "Наш сайт", url: "https://elovpark.ru/"}
-            {text: "Выбрать растение", action: "/Фильтры"}
+            "Выбрать растение" -> /Поиск растения
         intent: /sys/aimylogic/ru/parting || toState = "/Проверка"
         event: noMatch || toState = "./"
-        
+
     state: Поиск растения
         q!: * # Пользовательский текст
         script:
-            // Ищем критерии
+            var userInput = $parseTree.text || "";
+            
             var Color = $parseTree.text.match(/Green|Белый/i) ? true : false;
             var Размер = $parseTree.text.match(/Большой|Средний|Маленький/i);
             
