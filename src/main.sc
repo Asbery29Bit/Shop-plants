@@ -67,4 +67,82 @@ theme: /
         event: noMatch || toState = "./"
             
             
+    state: Уточнение размера
+        q!: * # Пользовательский текст
+        script:
+            var userInput = $parseTree.text ? $parseTree.text.toLowerCase() : '';
+            if (!userInput) {
+                $session.myResult = "Пожалуйста, укажите размер растения.";
+                return { toState: "/Уточнение размера" }; // Повторяем вопрос
+            } else {
+                var sizeMatch = userInput.match(/большой|средний|маленький/i);
+                
+                if (sizeMatch) {
+                       $session.selectedSize = sizeMatch[0];
+                       $session.myResult = "Вы выбрали размер: " + $session.selectedSize + ".";
+                   } else {
+                       $session.myResult = "Я не распознал размер. Пожалуйста, укажите один из следующих размеров: маленький, средний, большой.";
+                       return { toState: "/Уточнение размера" };
+                   }
+            }
+        a: {{ $session.myResult }}
+        a: Успех
+        event: noMatch || toState = "./"        
             
+state: ChooseFlowerType
+    a: Какой тип цветка вы бы хотели? (комнатное, садовое)
+    q!: *
+    script:
+        var type = $request.query;
+        // Проверка и обработка введенного типа
+        if (type.match(/(комнатное|садовое)/i)) \{
+            $session.selectedType = type;
+            $reactions.answer("Вы выбрали тип: " + type);
+            // Переход к следующему состоянию, например, подтверждение заказа
+            $reactions.go("/ConfirmOrder");
+        \} else \{
+            $reactions.answer("Извините, я не понял тип. Пожалуйста, выберите из: комнатное, садовое.");
+            $reactions.go("/ChooseFlowerType");
+        \}
+
+state: ConfirmOrder
+    a: Вы выбрали цветок \{\{ $session.selectedSize \}\} размера и типа \{\{ $session.selectedType \}\}. Подтвердите заказ.
+    buttons:
+        "Подтвердить" -> /OrderConfirmed
+        "Отменить" -> /OrderCancelled
+
+state: OrderConfirmed
+    a: Ваш заказ подтвержден! Спасибо за покупку.
+    script:
+        // Логика для подтверждения заказа, например, сохранение в базе данных
+        // Очистка сессии
+        delete $session.selectedSize;
+        delete $session.selectedType;
+
+state: OrderCancelled
+    a: Ваш заказ отменен. Если хотите сделать новый заказ, начните сначала.
+    script:
+        // Очистка сессии
+        delete $session.selectedSize;
+        delete $session.selectedType;
+
+state: Cart
+    intent!: /корзина
+    a: Ваша корзина:
+    script:
+        $temp.totalSum = 0;
+        for (var i = 0; i < $session.cart.length; i++) \{
+            var item = $session.cart[i];
+            $reactions.answer(item.name + " - " + item.price + " руб.");
+            $temp.totalSum += item.price;
+        \}
+        $reactions.answer("Общая сумма: " + $temp.totalSum + " руб.");
+    buttons:
+        \{text: "Оформить заказ", request_contact: true\}
+        "Меню" -> /Main
+
+state: GetPhoneNumber
+    event: telegramSendContact
+    script:
+        $client.phone_number = $request.rawRequest.message.contact.phone_number;
+    a: Спасибо! Наш менеджер свяжется с вами по номеру телефона \{\{ $client.phone_number \}\}.
