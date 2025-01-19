@@ -44,6 +44,7 @@ theme: /
         event: noMatch || toState = "./"
     
     state: Уточнение размера
+        a: Какого размера цветок вы бы хотели?
         q!: * # Пользовательский текст
         script:
             var userInput = $parseTree.text ? $parseTree.text.toLowerCase() : '';
@@ -59,13 +60,17 @@ theme: /
                 var availablePlants = [
                     { name: "Маленький зеленый кактус", color: "зеленый", size: "маленький" },
                     { name: "Маленький белый цветок", color: "белый", size: "маленький" },
-                    { name: "Маленький красный цветок", color: "красный", size: "маленький" }
+                    { name: "Маленький красный цветок", color: "красный", size: "маленький" },
+                    { name: "Средний синий цветок", color: "синий", size: "средний" },
+                    { name: "Большой желтый цветок", color: "желтый", size: "большой" },
+                    { name: "Средний зеленый куст", color: "зеленый", size: "средний" },
+                    { name: "Большой красный роза", color: "красный", size: "большой" }
                 ];
                 
                 var matchingPlants = availablePlants.filter(function(plant) {
                     return plant.color === $session.selectedColor && plant.size === $session.selectedSize;
                 });
-
+    
                 if (matchingPlants.length > 0) {
                     var plantNames = matchingPlants.map(function(plant) {
                         return plant.name;
@@ -75,9 +80,8 @@ theme: /
                 } else {
                     $session.myResult = "К сожалению, нет доступных растений с такими параметрами.";
                 }
-                
-                return { toState: "/Предложение" };  // Переход к следующему состоянию
             } else {
                 $session.myResult = "Я не распознал размер. Пожалуйста, укажите размер растения.";
                 return { toState: "/Уточнение размера" };
             }
+
