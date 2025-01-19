@@ -155,7 +155,7 @@ theme: /
     state: Checkout
         a: Пожалуйста, предоставьте ваш контактный номер для оформления заказа.
         buttons:
-            \{text: "Отправить номер", request_contact: true\}
+            {text: "Отправить номер", request_contact: true\}
     
     state: GetPhoneNumber
         event: telegramSendContact
