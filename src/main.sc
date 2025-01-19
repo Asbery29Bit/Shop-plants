@@ -30,18 +30,16 @@ theme: /
             
             if (colorMatch) {
                 $session.selectedColor = colorMatch[0];
-                $session.myResult = "Вы выбрали цвет: " + $session.selectedColor + ". Какого размера вы хотите?";
-                return { toState: "/Уточнение размера" };  // Переход к следующему состоянию
+                $session.myResult = "Вы выбрали цвет: " + $session.selectedColor + ".";
             } else {
                 $session.myResult = "Я не распознал цвет. Пожалуйста, укажите цвет растения.";
-                return { toState: "/Уточнение цвета" };  // Остаемся на том же этапе
             }
         a: {{ $session.myResult }}
         go: /Уточнение размера
         event: noMatch || toState = "./"
     
     state: Уточнение размера
-        
+        a: Какого размера цветок вы бы хотите?
         q!: * # Пользовательский текст
         script:
             var userInput = $parseTree.text ? $parseTree.text.toLowerCase() : '';
