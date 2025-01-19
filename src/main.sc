@@ -3,8 +3,7 @@ theme: /
     state: Приветствие
         q!: $regex</start>
         random: 
-            a: Добрый день! Чем могу помочь?
-            a: Приветствую! Готов помочь вам с выбором растения.
+            a: Здравствуйте! Чем могу помочь?
         buttons:
             {text: "Наш сайт", url: "https://elovpark.ru/"}
             "Выбрать растение" -> /Обработка ответа
@@ -16,7 +15,9 @@ theme: /
         q!: * # Ответ пользователя
         script:
             var userInput = $parseTree.text ? $parseTree.text.toLowerCase() : '';
-            $session.myResult = "Вы сказали: " + userInput + ". Давайте выберем растение!";
+            // Определяем, для кого нужны цветы
+            $session.recipient = userInput.match(/бабушка|сын|внучка|самого себя/i) ? userInput.match(/бабушка|сын|внучка|самого себя/i)[0] : "неизвестному получателю";
+            $session.myResult = "Вы сказали: " + userInput + ". Какой цвет вы бы хотели для " + $session.recipient + "?";
             return { toState: "/Уточнение цвета" };  // Переход к следующему состоянию
         a: {{ $session.myResult }}
         buttons:
@@ -31,7 +32,7 @@ theme: /
             
             if (colorMatch) {
                 $session.selectedColor = colorMatch[0];
-                $session.myResult = "Вы выбрали цвет: " + $session.selectedColor + ". Какой размер растения вас интересует? (большой, средний, маленький)";
+                $session.myResult = "Вы выбрали цвет: " + $session.selectedColor + ". Какого размера вы хотите?";
                 return { toState: "/Уточнение размера" };  // Переход к следующему состоянию
             } else {
                 $session.myResult = "Я не распознал цвет. Пожалуйста, укажите цвет растения.";
@@ -50,31 +51,26 @@ theme: /
             
             if (sizeMatch) {
                 $session.selectedSize = sizeMatch[0];
-                $session.myResult = "Вы выбрали размер: " + $session.selectedSize + ". Какой тип растения вас интересует? (цветок, суккулент, дерево)";
-                return { toState: "/Уточнение типа" };  // Переход к следующему состоянию
+                // Здесь можно добавить логику для поиска подходящих растений
+                var availablePlants = [
+                    { name: "Маленький зеленый кактус", color: "зеленый", size: "маленький" },
+                    { name: "Маленький белый цветок", color: "белый", size: "маленький" },
+                    { name: "Маленький красный цветок", color: "красный", size: "маленький" }
+                ];
+                
+                var matchingPlants = availablePlants.filter(plant => 
+                    plant.color === $session.selectedColor && plant.size === $session.selectedSize
+                );
+
+                if (matchingPlants.length > 0) {
+                    var plantNames = matchingPlants.map(plant => plant.name).join(", ");
+                    $session.myResult = "Мы можем предложить вам следующие цветы для " + $session.recipient + ": " + plantNames + ". Хотите добавить их в корзину?";
+                    $session.selectedPlants = matchingPlants; // Сохраняем выбранные растения в сессии
+                } else {
+                    $session.myResult = "К сожалению, нет доступных растений с такими параметрами.";
+                }
+                
+                return { toState: "/Предложение" };  // Переход к следующему состоянию
             } else {
                 $session.myResult = "Я не распознал размер. Пожалуйста, укажите размер растения.";
-                return { toState: "/Уточнение размера" };  // Остаемся на том же этапе
-            }
-        a: {{ $session.myResult }}
-        buttons:
-            "Дальше" -> /Уточнение типа
-        event: noMatch || toState = "./"
-    
-    state: Уточнение типа
-        q!: * # Пользовательский текст
-        script:
-            var userInput = $parseTree.text ? $parseTree.text.toLowerCase() : '';
-            var typeMatch = userInput.match(/цветок|суккулент|дерево/i);
-            
-            if (typeMatch) {
-                $session.selectedType = typeMatch[0];
-                $session.myResult = "Вы выбрали тип: " + $session.selectedType + ". Спасибо за выбор! Я подберу для вас подходящие растения.";
-                // Здесь можно добавить логику для поиска растений на основе выбранных параметров
-            } else {
-                $session.myResult = "Я не распознал тип. Пожалуйста, укажите тип растения.";
-                return { toState: "/Уточнение типа" };  // Остаемся на том же этапе
-            }
-        a: {{ $session.myResult }}
-        buttons:
-            "На главную"
+                return { toState: "/Уточнение размера" };  // Остаемся
