@@ -43,101 +43,48 @@ theme: /
         go: /Уточнение размера
         event: noMatch || toState = "./"
     
-    state: Main
-    q: (.*)
-    script:
-        var query = $request.query;
-        var results = [];
-        for (var i = 0; i < plants.length; i++) \{
-            var plant = plants[i];
-            if (query.includes(plant.name) || query.includes(plant.attributes.type) || query.includes(plant.attributes.care)) \{
-                results.push(plant);
-            \}
-        \}
-        if (results.length > 0) \{
-            $session.myResult = results.map(function(result) \{
-                return result.name + " - " + result.attributes.price + " руб.";
-            \}).join("\n");
-            $reactions.answer("Мы нашли следующие растения для вас:");
-            $reactions.answer($session.myResult);
-            $reactions.answer("Какого размера цветок вы бы хотели?");
-            $reactions.go("/SizeClarification");
-        \} else \{
-            $reactions.answer("К сожалению, мы не нашли подходящих растений.");
-        \}
-    buttons:
-        "Корзина" -> /Cart
-
-    state: SizeClarification
+    state: Уточнение размера
         a: Какого размера цветок вы бы хотели?
-        q!: *
+        q!: * # Пользовательский текст
         script:
-            var size = $request.query;
-            // Проверка и обработка введенного размера
-            if (size.match(/(маленький|средний|большой)/i)) \{
-                $session.selectedSize = size;
-                $reactions.answer("Вы выбрали размер: " + size);
-                // Переход к следующему состоянию, например, выбор типа цветка
-                $reactions.go("/ChooseFlowerType");
-            \} else \{
-                $reactions.answer("Извините, я не понял размер. Пожалуйста, выберите из: маленький, средний, большой.");
-                $reactions.go("/SizeClarification");
-            \}
+            var userInput = $parseTree.text ? $parseTree.text.toLowerCase() : '';
+            if (!userInput) {
+                $session.myResult = "Пожалуйста, укажите размер растения.";
+                return { toState: "/Уточнение размера" }; // Повторяем вопрос
+            }
+            var sizeMatch = userInput.match(/большой|средний|маленький/i);
+            
+            if (sizeMatch) {
+                $session.selectedSize = sizeMatch[0];
+                // Здесь можно добавить логику для поиска подходящих растений
+                var availablePlants = [
+                    { name: "Маленький зеленый кактус", color: "зеленый", size: "маленький" },
+                    { name: "Маленький белый цветок", color: "белый", size: "маленький" },
+                    { name: "Маленький красный цветок", color: "красный", size: "маленький" },
+                    { name: "Средний синий цветок", color: "синий", size: "средний" },
+                    { name: "Большой желтый цветок", color: "желтый", size: "большой" },
+                    { name: "Средний зеленый куст", color: "зеленый", size: "средний" },
+                    { name: "Большой красный роза", color: "красный", size: "большой" }
+                ];
+                
+                var matchingPlants = availablePlants.filter(function(plant) {
+                    return plant.color === $session.selectedColor && plant.size === $session.selectedSize;
+                });
     
-    state: ChooseFlowerType
-        a: Какой тип цветка вы бы хотели? (комнатное, садовое)
-        q!: *
-        script:
-            var type = $request.query;
-            // Проверка и обработка введенного типа
-            if (type.match(/(комнатное|садовое)/i)) \{
-                $session.selectedType = type;
-                $reactions.answer("Вы выбрали тип: " + type);
-                // Переход к следующему состоянию, например, подтверждение заказа
-                $reactions.go("/ConfirmOrder");
-            \} else \{
-                $reactions.answer("Извините, я не понял тип. Пожалуйста, выберите из: комнатное, садовое.");
-                $reactions.go("/ChooseFlowerType");
-            \}
+                if (matchingPlants.length > 0) {
+                    var plantNames = matchingPlants.map(function(plant) {
+                        return plant.name;
+                    }).join(", ");
+                    $session.myResult = "Мы можем предложить вам следующие цветы для " + $session.recipient + ": " + plantNames + ". Хотите добавить их в корзину?";
+                    $session.selectedPlants = matchingPlants; // Сохраняем выбранные растения в сессии
+                } else {
+                    $session.myResult = "К сожалению, нет доступных растений с такими параметрами.";
+                }
+                
+                return { toState: "/Предложение" };  // Переход к следующему состоянию
+            } else {
+                $session.myResult = "Я не распознал размер. Пожалуйста, укажите размер растения: большой, средний или маленький.";
+                return { toState: "/Уточнение размера" }; // Повторяем вопрос
+            }
     
-    state: ConfirmOrder
-        a: Вы выбрали цветок \{\{ $session.selectedSize \}\} размера и типа \{\{ $session.selectedType \}\}. Подтвердите заказ.
-        buttons:
-            "Подтвердить" -> /OrderConfirmed
-            "Отменить" -> /OrderCancelled
-    
-    state: OrderConfirmed
-        a: Ваш заказ подтвержден! Спасибо за покупку.
-        script:
-            // Логика для подтверждения заказа, например, сохранение в базе данных
-            // Очистка сессии
-            delete $session.selectedSize;
-            delete $session.selectedType;
-    
-    state: OrderCancelled
-        a: Ваш заказ отменен. Если хотите сделать новый заказ, начните сначала.
-        script:
-            // Очистка сессии
-            delete $session.selectedSize;
-            delete $session.selectedType;
-    
-    state: Cart
-        intent!: /корзина
-        a: Ваша корзина:
-        script:
-            $temp.totalSum = 0;
-            for (var i = 0; i < $session.cart.length; i++) \{
-                var item = $session.cart[i];
-                $reactions.answer(item.name + " - " + item.price + " руб.");
-                $temp.totalSum += item.price;
-            \}
-            $reactions.answer("Общая сумма: " + $temp.totalSum + " руб.");
-        buttons:
-            \{text: "Оформить заказ", request_contact: true\}
-            "Меню" -> /Main
-    
-    state: GetPhoneNumber
-        event: telegramSendContact
-        script:
-            $client.phone_number = $request.rawRequest.message.contact.phone_number;
-        a: Спасибо! Наш менеджер свяжется с вами по номеру телефона \{\{ $client.phone_number \}\}.
+
