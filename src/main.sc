@@ -130,6 +130,7 @@ theme: /
             }
         a: {{ $session.myResult }}
         a: Спасибо за ваш выбор!
+        go: /Корзина
         event: noMatch || toState = "./"
         
     state: Корзина
