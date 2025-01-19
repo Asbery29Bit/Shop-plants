@@ -132,7 +132,7 @@ theme: /
         a: Спасибо за ваш выбор!
         event: noMatch || toState = "./"
         
-    state: Cart
+    state: Корзина
         q: /корзина
         a: Ваша корзина:
         script:
