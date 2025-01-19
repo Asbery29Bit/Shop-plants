@@ -29,13 +29,13 @@ theme: /
            if (!userInput) {
                $session.myResult = "Пожалуйста, укажите цвет растения.";
            } else {
-               var colorMatch = userInput.match(/зеленый|белый|красный|синий|желтый/i);
+               var colorMatch = userInput.match(/зеленый|белый|красный|синий|желтый|розовый/i);
                
                if (colorMatch) {
                    $session.selectedColor = colorMatch[0];
                    $session.myResult = "Вы выбрали цвет: " + $session.selectedColor + ".";
                } else {
-                   $session.myResult = "Я не распознал цвет. Пожалуйста, укажите один из следующих цветов: зеленый, белый, красный, синий, желтый.";
+                   $session.myResult = "Я не распознал цвет. Пожалуйста, укажите один из следующих цветов: зеленый, белый, красный, синий, желтый, розовый.";
                    return { toState: "/Уточнение цвета" };
                }
            }
@@ -95,15 +95,15 @@ theme: /
             var plants = [
                 { name: "Роза", color: "красный", size: "маленький", type: "садовый", link:"-"},
                 { name: "Либерти", color: "зеленый", size: "средний", type: "садовый", link:"https://elovpark.ru/product/%d1%85%d0%be%d1%81%d1%82%d0%b0-%d0%bb%d0%b8%d0%b1%d0%b5%d1%80%d1%82%d0%b8/"},
-                { name: "Фикус", color: "зеленый", size: "большой", type: "комнатный", link:"-" },
+                { name: "Вербейник", color: "желтый", size: "средний", type: "садовый", link:"https://elovpark.ru/product/%d0%b2%d0%b5%d1%80%d0%b1%d0%b5%d0%b9%d0%bd%d0%b8%d0%ba-%d1%82%d0%be%d1%87%d0%b5%d1%87%d0%bd%d1%8b%d0%b9/" },
                 { name: "Тюльпан", color: "желтый", size: "средний", type: "садовый", link:"-" },
-                { name: "Лавр", color: "зеленый", size: "маленький", type: "комнатный", link:"-"},
-                { name: "Гербера", color: "красный", size: "средний", type: "садовый", link:"-" },
+                { name: "Барбарис", color: "красный", size: "большой", type: "садовый", link:"https://elovpark.ru/product/%d0%b1%d0%b0%d1%80%d0%b1%d0%b0%d1%80%d0%b8%d1%81-%d1%82%d1%83%d0%bd%d0%b1%d0%b5%d1%80%d0%b3%d0%b0-%d0%b0%d1%82%d1%80%d0%be%d0%bf%d1%83%d1%80%d0%bf%d1%83%d1%80%d0%b5%d0%b0/"},
+                { name: "Бадан", color: "розовый", size: "маленький", type: "садовый", link:"https://elovpark.ru/product/%d0%b1%d0%b0%d0%b4%d0%b0%d0%bd-%d1%82%d0%be%d0%bb%d1%81%d1%82%d0%be%d0%bb%d0%b8%d1%81%d1%82%d0%bd%d1%8b%d0%b9/" },
                 { name: "Кактус", color: "зеленый", size: "маленький", type: "комнатный", link:"-" },
                 { name: "Орхидея", color: "белый", size: "маленький", type: "комнатный", link:"-" },
-                { name: "Петуния", color: "синий", size: "средний", type: "садовый", link:"-" },
-                { name: "Лилия", color: "белый", size: "большой", type: "садовый", link:"-" },
-                { name: "Суккулент", color: "зеленый", size: "маленький", type: "комнатный", link:"-" },
+                { name: "Медуница", color: "синий", size: "маленький", type: "садовый", link:"https://elovpark.ru/product/%d0%bc%d0%b5%d0%b4%d1%83%d0%bd%d0%b8%d1%86%d0%b0-%d1%81%d0%b0%d1%85%d0%b0%d1%80%d0%bd%d0%b0%d1%8f-%d0%bc%d0%b8%d1%81%d1%81%d0%b8%d1%81-%d0%bc%d1%83%d0%bd/" },
+                { name: "Пион", color: "красный", size: "маленький", type: "садовый", link:"https://elovpark.ru/product/%d0%bf%d0%b8%d0%be%d0%bd-%d1%82%d0%be%d0%bd%d0%ba%d0%be%d0%bb%d0%b8%d1%81%d1%82%d0%bd%d1%8b%d0%b9/" },
+                { name: "Ирис Вайт Ледис", color: "белый", size: "средний", type: "садовый", link:"https://elovpark.ru/product/%d0%b8%d1%80%d0%b8%d1%81-%d0%b2%d0%b0%d0%b9%d1%82-%d0%bb%d0%b5%d0%b4%d0%b8%d1%81/" },
                 { name: "Астра", color: "красный", size: "средний", type: "садовый", link:"-" },
                 { name: "Бегония", color: "розовый", size: "маленький", type: "комнатный", link:"-" },
                 { name: "Каллы", color: "белый", size: "средний", type: "садовый", link:"-" },
