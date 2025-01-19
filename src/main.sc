@@ -135,7 +135,7 @@ theme: /
     state: Корзина
         a: Ваша корзина:
         script:
-            if ($session.cart && ($session.cart.length > 0)) \{
+            if ($session.cart.length > 0) \{
                 $temp.totalSum = 0;
                 for (var i = 0; i < $session.cart.length; i++) \{
                     var item = $session.cart[i];
