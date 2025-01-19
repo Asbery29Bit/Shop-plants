@@ -6,10 +6,10 @@ theme: /
             a: Здравствуйте! Чем могу помочь?
         buttons:
             {text: "Наш сайт", url: "https://elovpark.ru/"}
-            "Выбрать растение" -> /Обработка ответа
             "Корзина" -> /Корзина
         intent: /sys/aimylogic/ru/parting || toState = "/Проверка"
         event: noMatch || toState = "./"
+            go!: /Обработка ответа
     
     state: Обработка ответа
         q!: * # Ответ пользователя
