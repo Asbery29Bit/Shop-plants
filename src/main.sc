@@ -15,7 +15,7 @@ theme: /
         script:
             var userInput = $parseTree.text ? $parseTree.text.toLowerCase() : '';
             // Определяем, для кого нужны цветы
-            $session.recipient = userInput.match(/бабу*|сын*|внучк*|самого себя|себе/i) ? userInput.match(/бабушки|сын|внучка|самого себя|себе|бабушка|внучке|сыну|самому себе/i)[0] : "неизвестному получателю";
+            $session.recipient = userInput.match(/бабушки|сын|внучка|самого себя|себе|бабушка|внучке|сыну|самому себе/i) ? userInput.match(/бабушки|сын|внучка|самого себя|себе|бабушка|внучке|сыну|самому себе/i)[0] : "неизвестному получателю";
             $session.myResult = "Ответьте на пару наших вопросов и мы подберем цветок для " + $session.recipient + ".";
         a: {{ $session.myResult }}
         a: Какой цвет цветка вы бы хотели?
@@ -25,24 +25,24 @@ theme: /
     state: Уточнение цвета
         q!: * # Пользовательский текст
         script:
-           var userInput = $parseTree.text ? $parseTree.text.toLowerCase() : '';
-           if (!userInput) {
-               $session.myResult = "Пожалуйста, укажите цвет растения.";
-           } else {
-               var colorMatch = userInput.match(/зеленый|белый|красный|синий|желтый/i);
-               
-               if (colorMatch) {
-                   $session.selectedColor = colorMatch[0];
-                   $session.myResult = "Вы выбрали цвет: " + $session.selectedColor + ".";
-               } else {
-                   $session.myResult = "Я не распознал цвет. Пожалуйста, укажите один из следующих цветов: зеленый, белый, красный, синий, желтый.";
-                   return { toState: "/Уточнение цвета" };
-               }
-           }
+            var userInput = $parseTree.text ? $parseTree.text.toLowerCase() : '';
+            while (!userInput || !userInput.match(/зеленый|белый|красный|синий|желтый/i)) {
+                if (!userInput) {
+                    $session.myResult = "Пожалуйста, укажите цвет растения.";
+                } else {
+                    $session.myResult = "Я не распознал цвет. Пожалуйста, укажите один из следующих цветов: зеленый, белый, красный, синий, желтый.";
+                }
+                return { toState: "/Уточнение цвета" };
+            }
+            
+            var colorMatch = userInput.match(/зеленый|белый|красный|синий|желтый/i);
+            $session.selectedColor = colorMatch[0];
+            $session.myResult = "Вы выбрали цвет: " + $session.selectedColor + ".";
         a: {{ $session.myResult }}
         a: Какого размера цветок вы бы хотели?
         go: /Уточнение размера
         event: noMatch || toState = "./"
+
     
     state: Уточнение размера
         q!: * # Пользовательский текст
