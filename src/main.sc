@@ -23,6 +23,7 @@ theme: /
     
     state: Уточнение цвета
         a: Какой цвет цветка вы бы хотели?
+        q!: * # Пользовательский текст
         script:
             var userInput = $parseTree.text ? $parseTree.text.toLowerCase() : '';
             var colorMatch = userInput.match(/зеленый|белый|красный|синий|желтый/i);
