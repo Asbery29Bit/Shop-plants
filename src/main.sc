@@ -26,27 +26,31 @@ theme: /
         q: * # Пользовательский текст
         script:
            var userInput = $parseTree.text ? $parseTree.text.toLowerCase() : '';
-        if (!userInput) {
-            $session.myResult = "Пожалуйста, укажите цвет растения.";
-        } else {
-            var colorMatch = userInput.match(/зеленый|белый|красный|синий|желтый/i);
-            
-            if (colorMatch) {
-                $session.selectedColor = colorMatch[0];
-                $session.myResult = "Вы выбрали цвет: " + $session.selectedColor + ".";
-            } else {
-                $session.myResult = "Я не распознал цвет. Пожалуйста, укажите один из следующих цветов: зеленый, белый, красный, синий, желтый.";
-            }
-        }
+           if (!userInput) {
+               $session.myResult = "Пожалуйста, укажите цвет растения.";
+           } else {
+               var colorMatch = userInput.match(/зеленый|белый|красный|синий|желтый/i);
+               
+               if (colorMatch) {
+                   $session.selectedColor = colorMatch[0];
+                   $session.myResult = "Вы выбрали цвет: " + $session.selectedColor + ".";
+               } else {
+                   $session.myResult = "Я не распознал цвет. Пожалуйста, укажите один из следующих цветов: зеленый, белый, красный, синий, желтый.";
+               }
+           }
         a: {{ $session.myResult }}
         go: /Уточнение размера
         event: noMatch || toState = "./"
     
     state: Уточнение размера
-        a: Какого размера цветок вы бы хотите?
+        a: Какого размера цветок вы бы хотели?
         q!: * # Пользовательский текст
         script:
             var userInput = $parseTree.text ? $parseTree.text.toLowerCase() : '';
+            if (!userInput) {
+                $session.myResult = "Пожалуйста, укажите размер растения.";
+                return { toState: "/Уточнение размера" }; // Повторяем вопрос
+            }
             var sizeMatch = userInput.match(/большой|средний|маленький/i);
             
             if (sizeMatch) {
