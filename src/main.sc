@@ -96,7 +96,24 @@ theme: /
                 { name: "Роза", color: "красный", size: "маленький", type: "садовый" },
                 { name: "Фикус", color: "зеленый", size: "большой", type: "комнатный" },
                 { name: "Тюльпан", color: "желтый", size: "средний", type: "садовый" },
-                // Добавьте больше растений по мере необходимости
+                { name: "Лавр", color: "зеленый", size: "маленький", type: "комнатный" },
+                { name: "Гербера", color: "красный", size: "средний", type: "садовый" },
+                { name: "Кактус", color: "зеленый", size: "маленький", type: "комнатный" },
+                { name: "Орхидея", color: "белый", size: "маленький", type: "комнатный" },
+                { name: "Петуния", color: "синий", size: "средний", type: "садовый" },
+                { name: "Лилия", color: "белый", size: "большой", type: "садовый" },
+                { name: "Суккулент", color: "зеленый", size: "маленький", type: "комнатный" },
+                { name: "Астра", color: "красный", size: "средний", type: "садовый" },
+                { name: "Бегония", color: "розовый", size: "маленький", type: "комнатный" },
+                { name: "Каллы", color: "белый", size: "средний", type: "садовый" },
+                { name: "Пальма", color: "зеленый", size: "большой", type: "комнатный" },
+                { name: "Нарцисс", color: "желтый", size: "маленький", type: "садовый" },
+                { name: "Фиалка", color: "синий", size: "маленький", type: "комнатный" },
+                { name: "Гладиолус", color: "красный", size: "большой", type: "садовый" },
+                { name: "Мирт", color: "зеленый", size: "маленький", type: "комнатный" },
+                { name: "Цинерария", color: "синий", size: "средний", type: "комнатный" },
+                { name: "Клематис", color: "белый", size: "большой", type: "садовый" },
+                { name: "Лаванда", color: "синий", size: "средний", type: "садовый" }
             ];
     
             var matches = plants.filter(function(plant) {
@@ -108,7 +125,8 @@ theme: /
             if (matches.length > 0) {
                 $session.myResult = "Мы нашли подходящие варианты: " + matches.map(function(plant) { return plant.name; }).join(", ") + ".";
             } else {
-                $session.myResult = "К сожалению, мы не нашли растений, соответствующих вашим параметрам.";
+                var randomPlant = plants[Math.floor(Math.random() * plants.length)];
+                $session.myResult += " К сожалению, мы не нашли растений, соответствующих вашим параметрам, но мы можем предложить вам: " + randomPlant.name + ".";
             }
         a: {{ $session.myResult }}
         a: Спасибо за ваш выбор!
