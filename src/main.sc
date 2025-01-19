@@ -4,12 +4,12 @@ theme: /
         q!: $regex</start>
         random: 
             a: Здравствуйте! Чем могу помочь?
+            go: /Обработка ответа
         buttons:
             {text: "Наш сайт", url: "https://elovpark.ru/"}
             "Корзина" -> /Корзина
         intent: /sys/aimylogic/ru/parting || toState = "/Проверка"
         event: noMatch || toState = "./"
-            go!: /Обработка ответа
     
     state: Обработка ответа
         q!: * # Ответ пользователя
