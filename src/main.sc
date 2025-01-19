@@ -15,7 +15,7 @@ theme: /
         script:
             var userInput = $parseTree.text ? $parseTree.text.toLowerCase() : '';
             // Определяем, для кого нужны цветы
-            $session.recipient = userInput.match(/бабушки|сын|внучка|самого себя|себе|бабушка|внучке|сыну|самому себе/i) ? userInput.match(/бабушки|сын|внучка|самого себя|себе|бабушка|внучке|сыну|самому себе/i)[0] : "неизвестному получателю";
+            $session.recipient = userInput.match(/бабу*|сын*|внучк*|самого себя|себе/i) ? userInput.match(/бабушки|сын|внучка|самого себя|себе|бабушка|внучке|сыну|самому себе/i)[0] : "неизвестному получателю";
             $session.myResult = "Ответьте на пару наших вопросов и мы подберем цветок для " + $session.recipient + ".";
         a: {{ $session.myResult }}
         a: Какой цвет цветка вы бы хотели?
@@ -25,51 +25,34 @@ theme: /
     state: Уточнение цвета
         q!: * # Пользовательский текст
         script:
-            var userInput = $parseTree.text ? $parseTree.text.toLowerCase() : '';
-            
-            // Проверка правильности введенного цвета
-            if (!userInput || !userInput.match(/зеленый|белый|красный|синий|желтый/i)) {
-                // Если введенный цвет неправильный
-                if (!userInput) {
-                    $session.myResult = "Пожалуйста, укажите цвет растения.";
-                } else {
-                    $session.myResult = "Я не распознал цвет. Пожалуйста, укажите один из следующих цветов: зеленый, белый, красный, синий, желтый.";
-                }
-                return { toState: "/Уточнение цвета" }; // Остаемся в этом состоянии, пока не будет введен правильный цвет
-            }
-        
-            // Если цвет введен правильно
-            var colorMatch = userInput.match(/зеленый|белый|красный|синий|желтый/i);
-            $session.selectedColor = colorMatch[0];
-            $session.myResult = "Вы выбрали цвет: " + $session.selectedColor + ".";
-        
+           var userInput = $parseTree.text ? $parseTree.text.toLowerCase() : '';
+           if (!userInput) {
+               $session.myResult = "Пожалуйста, укажите цвет растения.";
+           } else {
+               var colorMatch = userInput.match(/зеленый|белый|красный|синий|желтый/i);
+               
+               if (colorMatch) {
+                   $session.selectedColor = colorMatch[0];
+                   $session.myResult = "Вы выбрали цвет: " + $session.selectedColor + ".";
+               } else {
+                   $session.myResult = "Я не распознал цвет. Пожалуйста, укажите один из следующих цветов: зеленый, белый, красный, синий, желтый.";
+                   return { toState: "/Уточнение цвета" };
+               }
+           }
         a: {{ $session.myResult }}
+        a: Какого размера цветок вы бы хотели?
         go: /Уточнение размера
         event: noMatch || toState = "./"
     
     state: Уточнение размера
-        a: Какого размера цветок вы бы хотели?
         q!: * # Пользовательский текст
         script:
             var userInput = $parseTree.text ? $parseTree.text.toLowerCase() : '';
-            
-            // Проверка правильности введенного размера
             if (!userInput) {
                 $session.myResult = "Пожалуйста, укажите размер растения.";
-                return { toState: "/Уточнение размера" }; // Ожидаем ввод размера
+                return { toState: "/Уточнение размера" }; // Повторяем вопрос
             }
-            
-            // Пытаемся распознать размер растения
             var sizeMatch = userInput.match(/большой|средний|маленький/i);
-            if (sizeMatch) {
-                $session.selectedSize = sizeMatch[0];
-                $session.myResult = "Вы выбрали размер: " + $session.selectedSize + ".";
-            } else {
-                $session.myResult = "Я не распознал размер. Пожалуйста, укажите один из следующих размеров: большой, средний, маленький.";
-                return { toState: "/Уточнение размера" }; // Повторяем запрос на выбор размера
-            }
-        
-
             
             if (sizeMatch) {
                 $session.selectedSize = sizeMatch[0];
