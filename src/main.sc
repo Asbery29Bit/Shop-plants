@@ -87,7 +87,7 @@ theme: /
             }
         a: {{ $session.myResult }}
         a: Подбираем подходящие варианты...
-        go!: /Подбор растений
+        go: /Подбор растений
         event: noMatch || toState = "./"
     
     state: Подбор растений
