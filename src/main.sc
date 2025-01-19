@@ -18,12 +18,12 @@ theme: /
             $session.recipient = userInput.match(/бабу*|сын*|внучк*|самого себя|себе/i) ? userInput.match(/бабушки|сын|внучка|самого себя/i)[0] : "неизвестному получателю";
             $session.myResult = "Ответьте на пару наших вопросов и мы подберем цветок для " + $session.recipient + ".";
         a: {{ $session.myResult }}
-        go!: /Уточнение цвета
+        go: /Уточнение цвета
         event: noMatch || toState = "./"
     
     state: Уточнение цвета
         a: Какой цвет цветка вы бы хотели?
-        q!: * # Пользовательский текст
+        q: * # Пользовательский текст
         script:
             var userInput = $parseTree.text ? $parseTree.text.toLowerCase() : '';
             var colorMatch = userInput.match(/зеленый|белый|красный|синий|желтый/i);
