@@ -94,6 +94,7 @@ theme: /
         script:
             var plants = [
                 { name: "Роза", color: "красный", size: "маленький", type: "садовый", link:"-"},
+                { name: "Либерти", color: "зеленый", size: "средний", type: "садовый", link:"https://elovpark.ru/product/%d1%85%d0%be%d1%81%d1%82%d0%b0-%d0%bb%d0%b8%d0%b1%d0%b5%d1%80%d1%82%d0%b8/"},
                 { name: "Фикус", color: "зеленый", size: "большой", type: "комнатный", link:"-" },
                 { name: "Тюльпан", color: "желтый", size: "средний", type: "садовый", link:"-" },
                 { name: "Лавр", color: "зеленый", size: "маленький", type: "комнатный", link:"-"},
