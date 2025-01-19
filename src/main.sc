@@ -69,8 +69,6 @@ theme: /
                 return { toState: "/Уточнение размера" }; // Повторяем запрос на выбор размера
             }
         
-        a: {{ $session.myResult }}
-        go: /Следующий шаг
 
             
             if (sizeMatch) {
