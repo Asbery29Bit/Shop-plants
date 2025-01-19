@@ -11,19 +11,16 @@ theme: /
         "Корзина" -> /Корзина
     intent: /sys/aimylogic/ru/parting || toState = "/Проверка"
     event: noMatch || toState = "./"
- 
+
     state: Поиск растения
     q!: * # Пользовательский текст
     script:
         if (!$parseTree || !$parseTree.text) {
             $session.myResult = "К сожалению, я не смог обработать ваш запрос. Попробуйте сформулировать его по-другому.";
         } else {
-            // Получаем текст пользователя
             var userInput = $parseTree.text.toLowerCase();
-            var results = [];
             var questions = [];
 
-            // Проверяем наличие ключевых слов
             if (userInput.includes("цвет") || userInput.includes("цветок")) {
                 questions.push("Какой цвет вас интересует? (например, зеленый, белый, красный)");
             }
@@ -37,7 +34,6 @@ theme: /
                 questions.push("Какой уровень ухода вы предпочитаете? (легкий, средний, сложный)");
             }
 
-            // Если есть вопросы, задаем их
             if (questions.length > 0) {
                 $session.myResult = questions.join(" ");
             } else {
@@ -88,4 +84,8 @@ theme: /
     state: Уточнение типа
     q!: * # Пользовательский текст
     script:
-        var userInput
+        var userInput = $parseTree.text.toLowerCase();
+        var typeMatch = userInput.match(/цветок|суккулент|дерево/i);
+        
+        if (typeMatch) {
+            $session.selectedType = typeMatch[0];
