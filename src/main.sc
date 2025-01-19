@@ -58,12 +58,14 @@ theme: /
                     { name: "Маленький красный цветок", color: "красный", size: "маленький" }
                 ];
                 
-                var matchingPlants = availablePlants.filter(plant => 
-                    plant.color === $session.selectedColor && plant.size === $session.selectedSize
-                );
+                var matchingPlants = availablePlants.filter(function(plant) {
+                    return plant.color === $session.selectedColor && plant.size === $session.selectedSize;
+                });
 
                 if (matchingPlants.length > 0) {
-                    var plantNames = matchingPlants.map(plant => plant.name).join(", ");
+                    var plantNames = matchingPlants.map(function(plant) {
+                        return plant.name;
+                    }).join(", ");
                     $session.myResult = "Мы можем предложить вам следующие цветы для " + $session.recipient + ": " + plantNames + ". Хотите добавить их в корзину?";
                     $session.selectedPlants = matchingPlants; // Сохраняем выбранные растения в сессии
                 } else {
@@ -73,4 +75,4 @@ theme: /
                 return { toState: "/Предложение" };  // Переход к следующему состоянию
             } else {
                 $session.myResult = "Я не распознал размер. Пожалуйста, укажите размер растения.";
-                return { toState: "/Уточнение размера" };  // Остаемся
+                return { toState: "/
