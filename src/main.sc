@@ -7,15 +7,26 @@ theme: /
             a: Приветствую! Готов помочь вам с выбором растения.
         buttons:
             {text: "Наш сайт", url: "https://elovpark.ru/"}
-            "Выбрать растение" -> /Уточнение цвета
+            "Выбрать растение" -> /Обработка ответа
             "Корзина" -> /Корзина
         intent: /sys/aimylogic/ru/parting || toState = "/Проверка"
+        event: noMatch || toState = "./"
+    
+    state: Обработка ответа
+        q!: * # Ответ пользователя
+        script:
+            var userInput = $parseTree.text ? $parseTree.text.toLowerCase() : '';
+            $session.myResult = "Вы сказали: " + userInput + ". Давайте выберем растение!";
+            toState = "/Уточнение цвета";  // Переход к следующему состоянию
+        a: {{ $session.myResult }}
+        buttons:
+            "Дальше" -> /Уточнение цвета
         event: noMatch || toState = "./"
     
     state: Уточнение цвета
         q!: * # Пользовательский текст
         script:
-            var userInput = $parseTree.text.toLowerCase();
+            var userInput = $parseTree.text ? $parseTree.text.toLowerCase() : '';
             var colorMatch = userInput.match(/зеленый|белый|красный|синий|желтый/i);
             
             if (colorMatch) {
@@ -34,7 +45,7 @@ theme: /
     state: Уточнение размера
         q!: * # Пользовательский текст
         script:
-            var userInput = $parseTree.text.toLowerCase();
+            var userInput = $parseTree.text ? $parseTree.text.toLowerCase() : '';
             var sizeMatch = userInput.match(/большой|средний|маленький/i);
             
             if (sizeMatch) {
@@ -53,7 +64,7 @@ theme: /
     state: Уточнение типа
         q!: * # Пользовательский текст
         script:
-            var userInput = $parseTree.text.toLowerCase();
+            var userInput = $parseTree.text ? $parseTree.text.toLowerCase() : '';
             var typeMatch = userInput.match(/цветок|суккулент|дерево/i);
             
             if (typeMatch) {
