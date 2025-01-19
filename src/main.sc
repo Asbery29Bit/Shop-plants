@@ -55,7 +55,18 @@ theme: /
             var sizeMatch = userInput.match(/большой|средний|маленький/i);
             
             
-            
+            if (sizeMatch) {
+                   $session.selectedSize = sizeMatch[0];
+                   $session.myResult = "Вы выбрали размер: " + $session.selectedSize + ".";
+               } else {
+                   $session.myResult = "Я не распознал размер. Пожалуйста, укажите один из следующих размеров: маленький, средний, большой.";
+                   return { toState: "/Уточнение размера" };
+               }
+           }
+        a: {{ $session.myResult }}
+        a: Какого размера цветок вы бы хотели?
+        go: /Уточнение размера
+        event: noMatch || toState = "./"
             
             
             
