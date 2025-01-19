@@ -45,7 +45,6 @@ theme: /
         event: noMatch || toState = "./"
     
     state: Уточнение размера
-        a: Какого размера цветок вы бы хотели?
         q!: * # Пользовательский текст
         script:
             var userInput = $parseTree.text ? $parseTree.text.toLowerCase() : '';
