@@ -144,10 +144,10 @@ theme: /
                 }
                 $reactions.answer("Общая сумма: " + $temp.totalSum + " руб.");
                 $reactions.answer("Вы можете оформить заказ или вернуться в меню.");
-            \} else \{
+            } else {
                 $reactions.answer("Ваша корзина пуста. Пожалуйста, добавьте товары в корзину.");
                 $reactions.go("/Main");
-            \}
+            }
         buttons:
             "Оформить заказ" -> /Checkout
             "Меню" -> /Main
