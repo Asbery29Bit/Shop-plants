@@ -90,3 +90,35 @@ theme: /
         a: {{ $session.myResult }}
         a: Успех
         event: noMatch || toState = "./"
+        
+        
+    // Пример массива с растениями
+    var plantsDatabase = [
+        { name: "Роза", color: "красный", size: "маленький", type: "садовый" },
+        { name: "Фикус", color: "зеленый", size: "большой", type: "комнатный" },
+        { name: "Тюльпан", color: "желтый", size: "средний", type: "садовый" },
+        // Добавьте больше растений по мере необходимости
+    ];
+    
+    // В конце состояния Уточнение типа
+    state: Уточнение типа
+        ...
+        a: {{ $session.myResult }}
+        a: Успех! Давайте посмотрим, какие растения подходят под ваш выбор.
+        
+        // Фильтрация растений
+        var suitablePlants = plantsDatabase.filter(function(plant) {
+            return plant.color === $session.selectedColor &&
+                   plant.size === $session.selectedSize &&
+                   plant.type === $session.selectedType;
+        });
+    
+        if (suitablePlants.length > 0) {
+            var plantNames = suitablePlants.map(function(plant) { return plant.name; }).join(", ");
+            $session.myResult = "Вот подходящие растения: " + plantNames + ".";
+        } else {
+            $session.myResult = "К сожалению, не найдено подходящих растений.";
+        }
+    
+        a: {{ $session.myResult }}
+        event: noMatch || toState = "./"
