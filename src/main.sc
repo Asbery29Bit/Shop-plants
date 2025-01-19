@@ -27,20 +27,22 @@ theme: /
         script:
             var userInput = $parseTree.text ? $parseTree.text.toLowerCase() : '';
             
-            // Повторяем запрос до тех пор, пока не будет введен правильный цвет
-            while (!userInput || !userInput.match(/зеленый|белый|красный|синий|желтый/i)) {
+            // Проверка правильности введенного цвета
+            if (!userInput || !userInput.match(/зеленый|белый|красный|синий|желтый/i)) {
+                // Если введенный цвет неправильный
                 if (!userInput) {
                     $session.myResult = "Пожалуйста, укажите цвет растения.";
                 } else {
                     $session.myResult = "Я не распознал цвет. Пожалуйста, укажите один из следующих цветов: зеленый, белый, красный, синий, желтый.";
                 }
-                return { toState: "/Уточнение цвета" }; // Переходим обратно в уточнение цвета
+                return { toState: "/Уточнение цвета" }; // Остаемся в этом состоянии, пока не будет введен правильный цвет
             }
-            
-            // После правильного ввода цвета
+        
+            // Если цвет введен правильно
             var colorMatch = userInput.match(/зеленый|белый|красный|синий|желтый/i);
             $session.selectedColor = colorMatch[0];
             $session.myResult = "Вы выбрали цвет: " + $session.selectedColor + ".";
+        
         a: {{ $session.myResult }}
         a: Какого размера цветок вы бы хотели?
         go: /Уточнение размера
@@ -51,10 +53,10 @@ theme: /
         script:
             var userInput = $parseTree.text ? $parseTree.text.toLowerCase() : '';
             
-            // Повторяем запрос до тех пор, пока не будет введен размер
+            // Проверка правильности введенного размера
             if (!userInput) {
                 $session.myResult = "Пожалуйста, укажите размер растения.";
-                return { toState: "/Уточнение размера" }; // Повторяем вопрос
+                return { toState: "/Уточнение размера" }; // Ожидаем ввод размера
             }
             
             // Пытаемся распознать размер растения
@@ -64,9 +66,12 @@ theme: /
                 $session.myResult = "Вы выбрали размер: " + $session.selectedSize + ".";
             } else {
                 $session.myResult = "Я не распознал размер. Пожалуйста, укажите один из следующих размеров: большой, средний, маленький.";
-                return { toState: "/Уточнение размера" }; // Переходим обратно в уточнение размера
+                return { toState: "/Уточнение размера" }; // Повторяем запрос на выбор размера
             }
-                var sizeMatch = userInput.match(/большой|средний|маленький/i);
+        
+        a: {{ $session.myResult }}
+        go: /Следующий шаг
+
             
             if (sizeMatch) {
                 $session.selectedSize = sizeMatch[0];
