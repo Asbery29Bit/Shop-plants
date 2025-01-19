@@ -2,9 +2,8 @@ theme: /
 
     state: Приветствие
         q!: $regex</start>
-        random: 
-            a: Здравствуйте! Чем могу помочь?
-            go: /Обработка ответа
+        a: Здравствуйте! Чем могу помочь?
+        go: /Обработка ответа
         buttons:
             {text: "Наш сайт", url: "https://elovpark.ru/"}
             "Корзина" -> /Корзина
@@ -24,7 +23,6 @@ theme: /
         event: noMatch || toState = "./"
     
     state: Уточнение цвета
-        a: Пожалуйста, укажите цвет растения.
         q!: * # Пользовательский текст
         script:
             var userInput = $parseTree.text ? $parseTree.text.toLowerCase() : '';
