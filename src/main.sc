@@ -125,7 +125,9 @@ theme: /
             if (matches.length > 0) {
                 $session.myResult = "Мы нашли подходящие варианты: " + matches.map(function(plant) { return plant.name + " (цвет: " + plant.color + ")"; }).join(", ") + ".";
             } else {
-                var randomPlant = plants[Math.floor(Math.random() * plants.length)];
+                var randomNumber = Math.floor(Math.random() * plants.length);
+                var randomPlant = plants[randomNumber];
+                var randomColor = plants[randomNumber][2];
                 $session.myResult += " К сожалению, мы не нашли растений, соответствующих вашим параметрам, но мы можем предложить вам: " + randomPlant.name  + " или " + randomPlant.name + ".";
             }
         a: {{ $session.myResult }}
