@@ -54,6 +54,12 @@ theme: /
             }
             var sizeMatch = userInput.match(/большой|средний|маленький/i);
             
+            
+            
+            
+            
+            
+            
             if (sizeMatch) {
                 $session.selectedSize = sizeMatch[0];
                 // Здесь можно добавить логику для поиска подходящих растений
