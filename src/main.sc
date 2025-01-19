@@ -18,8 +18,8 @@ theme: /
             // Определяем, для кого нужны цветы
             $session.recipient = userInput.match(/бабу*|сын*|внучк*|самого себя|себе/i) ? userInput.match(/бабушки|сын|внучка|самого себя/i)[0] : "неизвестному получателю";
             $session.myResult = "Вы сказали: " + userInput + ". Какой цвет вы бы хотели для " + $session.recipient + "?";
-            return { toState: "/Уточнение цвета" };  // Переход к следующему состоянию
         a: {{ $session.myResult }}
+        go: /Уточнение цвета
         event: noMatch || toState = "./"
     
     state: Уточнение цвета
