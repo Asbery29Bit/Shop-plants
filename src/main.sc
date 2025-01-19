@@ -123,7 +123,7 @@ theme: /
             });
     
             if (matches.length > 0) {
-                $session.myResult = "Мы нашли подходящие варианты: " + matches.map(function(plant) { return plant.name + " (цвет: " + plant.color + ")"; }).join(", ") + ".";
+                $session.myResult = "Мы нашли подходящие варианты: " + matches.map(function(plant) { return plant.name + " (цвет: " + plant.color + ")"; }).join("\n") + ".";
             } else {
                 var randomPlant = plants[Math.floor(Math.random() * plants.length)];
                 $session.myResult += " К сожалению, мы не нашли растений, соответствующих вашим параметрам, но мы можем предложить вам: " + randomPlant.name + " (цвет: " + randomPlant.color + ")" + ".";
