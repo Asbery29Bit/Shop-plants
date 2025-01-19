@@ -15,7 +15,7 @@ theme: /
         script:
             var userInput = $parseTree.text ? $parseTree.text.toLowerCase() : '';
             // Определяем, для кого нужны цветы
-            $session.recipient = userInput.match(/бабу*|сын*|внучк*|самого себя|себе/i) ? userInput.match(/бабушки|сын|внучка|самого себя|себе|бабушка|внучке|сыну|самому себе/i)[0] : "неизвестному получателю";
+            $session.recipient = userInput.match(/бабу*|сын*|внучк*|самого себя|себе/i) ? userInput.match(/бабушки|сын|внучка|самого себя|себе|бабушка|внучке|сыну|самому себе/i)[0] : "неизвестного получателю";
             $session.myResult = "Ответьте на пару наших вопросов и мы подберем цветок для " + $session.recipient + ".";
         a: {{ $session.myResult }}
         a: Какой цвет цветка вы бы хотели?
