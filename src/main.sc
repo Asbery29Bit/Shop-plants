@@ -14,7 +14,11 @@ theme: /
     state: Поиск растения
         q!: * # Пользовательский текст
         script:
-            var userInput = $parseTree.text || "";
+            if (!$parseTree || !$parseTree.text) {
+            $session.myResult = "К сожалению, я не смог обработать ваш запрос. Попробуйте сформулировать его по-другому.";
+        } else {
+            // Получаем текст пользователя
+            var userInput = $parseTree.text;
             
             var Color = $parseTree.text.match(/Green|Белый/i) ? true : false;
             var Размер = $parseTree.text.match(/Большой|Средний|Маленький/i);
