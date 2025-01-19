@@ -75,4 +75,4 @@ theme: /
                 return { toState: "/Предложение" };  // Переход к следующему состоянию
             } else {
                 $session.myResult = "Я не распознал размер. Пожалуйста, укажите размер растения.";
-                return { toState: "/
+                return { toState: "/Уточ
