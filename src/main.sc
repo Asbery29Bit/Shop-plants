@@ -16,7 +16,8 @@ theme: /
         script:
             if (!$parseTree || !$parseTree.text) {
             $session.myResult = "К сожалению, я не смог обработать ваш запрос. Попробуйте сформулировать его по-другому.";
-        } else {
+            }   
+            else {
             // Получаем текст пользователя
             var userInput = $parseTree.text;
             
@@ -37,6 +38,7 @@ theme: /
                 $session.myResult = результат.join(", ");
             } else {
                 $session.myResult = "Подходящие варианты не найдены.";
+            }
             }
         a: Вот что я нашел по вашему запросу: {{ $session.myResult }}
         buttons:
