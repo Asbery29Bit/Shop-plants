@@ -141,7 +141,7 @@ theme: /
                     var item = $session.cart[i];
                     $reactions.answer(item.name + " - " + item.price + " руб.");
                     $temp.totalSum += item.price;
-                \}
+                }
                 $reactions.answer("Общая сумма: " + $temp.totalSum + " руб.");
                 $reactions.answer("Вы можете оформить заказ или вернуться в меню.");
             \} else \{
