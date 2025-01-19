@@ -23,7 +23,6 @@ theme: /
         event: noMatch || toState = "./"
     
     state: Уточнение цвета
-        a: Какого бы цвета вы хотели цветы?
         q!: * # Пользовательский текст
         script:
             var userInput = $parseTree.text ? $parseTree.text.toLowerCase() : '';
