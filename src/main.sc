@@ -131,3 +131,39 @@ theme: /
         a: {{ $session.myResult }}
         a: Спасибо за ваш выбор!
         event: noMatch || toState = "./"
+        
+    state: Cart
+        q: /корзина
+        a: Ваша корзина:
+        script:
+            if ($session.cart && $session.cart.length > 0) \{
+                $temp.totalSum = 0;
+                for (var i = 0; i < $session.cart.length; i++) \{
+                    var item = $session.cart[i];
+                    $reactions.answer(item.name + " - " + item.price + " руб.");
+                    $temp.totalSum += item.price;
+                \}
+                $reactions.answer("Общая сумма: " + $temp.totalSum + " руб.");
+                $reactions.answer("Вы можете оформить заказ или вернуться в меню.");
+            \} else \{
+                $reactions.answer("Ваша корзина пуста. Пожалуйста, добавьте товары в корзину.");
+                $reactions.go("/Main");
+            \}
+        buttons:
+            "Оформить заказ" -> /Checkout
+            "Меню" -> /Main
+
+    state: Checkout
+        a: Пожалуйста, предоставьте ваш контактный номер для оформления заказа.
+        buttons:
+            \{text: "Отправить номер", request_contact: true\}
+    
+    state: GetPhoneNumber
+        event: telegramSendContact
+        script:
+            $client.phone_number = $request.rawRequest.message.contact.phone_number;
+            $reactions.answer("Спасибо! Наш менеджер свяжется с вами по номеру телефона " + $client.phone_number + ".");
+            // Логика для подтверждения заказа, например, сохранение в базе данных
+            // Очистка корзины после оформления заказа
+            delete $session.cart;
+            $reactions.go("/Main");
