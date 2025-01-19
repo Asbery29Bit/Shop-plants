@@ -133,7 +133,6 @@ theme: /
         event: noMatch || toState = "./"
         
     state: Корзина
-        q: /Корзина
         a: Ваша корзина:
         script:
             if ($session.cart && $session.cart.length > 0) \{
