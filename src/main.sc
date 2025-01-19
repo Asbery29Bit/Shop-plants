@@ -23,7 +23,6 @@ theme: /
         event: noMatch || toState = "./"
     
     state: Уточнение цвета
-        a: 1?
         q!: * # Пользовательский текст
         script:
            var userInput = $parseTree.text ? $parseTree.text.toLowerCase() : '';
@@ -40,11 +39,11 @@ theme: /
                }
            }
         a: {{ $session.myResult }}
+        a: Какого размера цветок вы бы хотели?
         go: /Уточнение размера
         event: noMatch || toState = "./"
     
     state: Уточнение размера
-        a: Какого размера цветок вы бы хотели?
         q!: * # Пользовательский текст
         script:
             var userInput = $parseTree.text ? $parseTree.text.toLowerCase() : '';
