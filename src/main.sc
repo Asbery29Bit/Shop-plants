@@ -63,8 +63,7 @@ theme: /
                    }
             }
         a: {{ $session.myResult }}
-        a: Какого размера цветок вы бы хотели?
-        go: /Уточнение размера
+        a: Успех
         event: noMatch || toState = "./"
             
             
