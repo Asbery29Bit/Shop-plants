@@ -92,7 +92,6 @@ theme: /
         event: noMatch || toState = "./"
         
         
-    // Пример массива с растениями
     var plantsDatabase = [
         { name: "Роза", color: "красный", size: "маленький", type: "садовый" },
         { name: "Фикус", color: "зеленый", size: "большой", type: "комнатный" },
