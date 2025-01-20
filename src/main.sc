@@ -42,7 +42,7 @@ theme: /
             $session.color = $parseTree._color;
         if: $session.color == undefined
             a: Я не понял. Вы сказали: {{$request.query}}
-            go!: /Уточнение цвета
+            go: /Уточнение цвета
         else: 
             a: вы выбрали цвет {{$session.color}}
             go!: /Запрос размера
