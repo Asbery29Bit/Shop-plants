@@ -39,6 +39,7 @@ theme: /
     state: Уточнение цвета
         intent: /Уточнение цвета
         script:
+            a: тест {{$session.color}}
             $session.color = $parseTree._color;
         if: $session.color == undefined
             a: Я не понял. Вы сказали: {{$request.query}}
