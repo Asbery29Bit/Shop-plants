@@ -22,27 +22,22 @@ theme: /
         go: /Уточнение цвета
         event: noMatch || toState = "./"
     
-    state: Уточнение цвета
-        q!: * # Пользовательский текст
-        script:
-           var userInput = $parseTree.text ? $parseTree.text.toLowerCase() : '';
-           if (!userInput) {
-               $session.myResult = "Пожалуйста, укажите цвет растения.";
-           } else {
-               var colorMatch = userInput.match(/зеленый|белый|красный|синий|желтый|розовый/i);
-               
-               if (colorMatch) {
-                   $session.selectedColor = colorMatch[0];
-                   $session.myResult = "Вы выбрали цвет: " + $session.selectedColor + ".";
-               } else {
-                   $session.myResult = "Я не распознал цвет. Пожалуйста, укажите один из следующих цветов: зеленый, белый, красный, синий, желтый, розовый.";
-                   return { toState: "/Уточнение цвета" };
-               }
-           }
-        a: {{ $session.myResult }}
-        a: Какого размера цветок вы бы хотели?
-        go: /Уточнение размера
-        event: noMatch || toState = "./"
+
+        
+        
+        state: Уточнение цвета
+            intent!: /Уточнение цвета
+            script:
+                $session.color = $parseTree._Color;
+            if: $session.color == undefined
+                a: Я не понял. Вы сказали: {{$request.query}}
+                go!: /Уточнение цвета
+            else: 
+                a: вы выбрали цвет {{$session.salary}}
+                go!: /Уточнение размера
+            event: noMatch || toState = "/Инфо"
+        
+        
     
     state: Уточнение размера
         q!: * # Пользовательский текст
@@ -134,9 +129,3 @@ theme: /
         event: noMatch || toState = "./"
         buttons:
             "Вернутся в начало" -> /Приветствие
-
-    state: проверка цвета
-        if: $session.color == undefined
-            go!: /Уточнение цвета
-        else: 
-            go!: /Уточнение размера
