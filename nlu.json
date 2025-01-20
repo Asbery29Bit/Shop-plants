@@ -291,7 +291,7 @@
     "slots" : [ {
       "name" : "size",
       "entity" : "Размер",
-      "required" : true,
+      "required" : false,
       "prompts" : [ "Уточните размер растения" ]
     } ],
     "priority" : 0
@@ -309,7 +309,7 @@
     "slots" : [ {
       "name" : "type",
       "entity" : "Type",
-      "required" : true,
+      "required" : false,
       "prompts" : [ "Пожалуйста, уточните тип растения" ]
     } ],
     "priority" : 0
