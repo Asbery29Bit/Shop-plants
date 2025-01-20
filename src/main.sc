@@ -79,7 +79,7 @@ theme: /
             go: /Уточнение типа
         else: 
             a: вы выбрали тип {{$session.type}}
-            go!: /Подбор растений
+            go: /Подбор растений
         buttons:
             "Не указывать" -> /Подбор растений
         event: noMatch || toState = "./"
@@ -87,45 +87,36 @@ theme: /
     state: Подбор растений
         a: Подбираем подходящие варианты...
         script:
-            var plants = [
-                { name: "Роза", color: "красный", size: "маленький", type: "цветок", link:"-"},
-                { name: "Либерти", color: "зеленый", size: "средний", type: "кустарник", link:"https://elovpark.ru/product/%d1%85%d0%be%d1%81%d1%82%d0%b0-%d0%bb%d0%b8%d0%b1%d0%b5%d1%80%d1%82%d0%b8/"},
-                { name: "Вербейник", color: "желтый", size: "средний", type: "цветок", link:"https://elovpark.ru/product/%d0%b2%d0%b5%d1%80%d0%b1%d0%b5%d0%b9%d0%bd%d0%b8%d0%ba-%d1%82%d0%be%d1%87%d0%b5%d1%87%d0%bd%d1%8b%d0%b9/" },
-                { name: "Тюльпан", color: "желтый", size: "средний", type: "цветок", link:"-" },
-                { name: "Барбарис", color: "красный", size: "большой", type: "кустарник", link:"https://elovpark.ru/product/%d0%b1%d0%b0%d1%80%d0%b1%d0%b0%d1%80%d0%b8%d1%81-%d1%82%d1%83%d0%bd%d0%b1%d0%b5%d1%80%d0%b3%d0%b0-%d0%b0%d1%82%d1%80%d0%be%d0%bf%d1%83%d1%80%d0%bf%d1%83%d1%80%d0%b5%d0%b0/"},
-                { name: "Бадан", color: "розовый", size: "маленький", type: "цветок", link:"https://elovpark.ru/product/%d0%b1%d0%b0%d0%b4%d0%b0%d0%bd-%d1%82%d0%be%d0%bb%d1%81%d1%82%d0%be%d0%bb%d0%b8%d1%81%d1%82%d0%bd%d1%8b%d0%b9/" },
-                { name: "Кактус", color: "зеленый", size: "маленький", type: "цветок", link:"-" },
-                { name: "Орхидея", color: "белый", size: "маленький", type: "цветок", link:"-" },
-                { name: "Медуница", color: "синий", size: "маленький", type: "цветок", link:"https://elovpark.ru/product/%d0%bc%d0%b5%d0%b4%d1%83%d0%bd%d0%b8%d1%86%d0%b0-%d1%81%d0%b0%d1%85%d0%b0%d1%80%d0%bd%d0%b0%d1%8f-%d0%bc%d0%b8%d1%81%d1%81%d0%b8%d1%81-%d0%bc%d1%83%d0%bd/" },
-                { name: "Пион", color: "красный", size: "маленький", type: "цветок", link:"https://elovpark.ru/product/%d0%bf%d0%b8%d0%be%d0%bd-%d1%82%d0%be%d0%bd%d0%ba%d0%be%d0%bb%d0%b8%d1%81%d1%82%d0%bd%d1%8b%d0%b9/" },
-                { name: "Ирис Вайт Ледис", color: "белый", size: "средний", type: "цветок", link:"https://elovpark.ru/product/%d0%b8%d1%80%d0%b8%d1%81-%d0%b2%d0%b0%d0%b9%d1%82-%d0%bb%d0%b5%d0%b4%d0%b8%d1%81/" },
-                { name: "Астра", color: "красный", size: "средний", type: "цветок", link:"-" },
-                { name: "Бегония", color: "розовый", size: "маленький", type: "цветок", link:"-" },
-                { name: "Каллы", color: "белый", size: "средний", type: "цветок", link:"-" },
-                { name: "Пальма", color: "зеленый", size: "большой", type: "дерево", link:"-" },
-                { name: "Нарцисс", color: "желтый", size: "маленький", type: "цветок", link:"-" },
-                { name: "Фиалка", color: "синий", size: "маленький", type: "цветок", link:"-" },
-                { name: "Гладиолус", color: "красный", size: "большой", type: "цветок", link:"-" },
-                { name: "Мирт", color: "зеленый", size: "маленький", type: "цветок", link:"-" },
-                { name: "Цинерария", color: "синий", size: "средний", type: "цветок", link:"-" },
-                { name: "Клематис", color: "белый", size: "большой", type: "цветок", link:"-" },
-                { name: "Лаванда", color: "синий", size: "средний", type: "цветок", link:"-" }
-            ];
-            
-            var matches = plants.filter(function(plant) {
-                return plant.color === $session.color &&
-                       plant.size === $session.size &&
-                       plant.type === $session.type;
-            });
-    
-            if (matches.length > 0) {
-                $session.myResult = "Мы нашли подходящие варианты: " + "\n" + matches.map(function(plant) { return plant.name + " (ссылка: " + plant.link + ")"; }).join("\n") + ".";
-            } else {
-                var randomPlant = plants[Math.floor(Math.random() * plants.length)];
-                $session.myResult += " К сожалению, мы не нашли растений, соответствующих вашим параметрам, но мы можем предложить вам: " + randomPlant.name + " (ссылка: " + randomPlant.link + ")" + ".";
-            }
-        a: {{ $session.myResult }}
-        a: Спасибо за ваш выбор!
-        event: noMatch || toState = "./"
-        buttons:
-            "Вернутся в начало" -> /Приветствие
+            $temp.response = $http.post(
+                "http://185.242.118.144:8000/find_plants", 
+                {
+                    body: {
+                        color: $session.color,
+                        size: $session.size,
+                        type: $session.type
+                    },
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                }
+            );
+        # Отправляем запрос на внешний API для поиска растений
+        if: $temp.response.isOk && $temp.response.data.results.length > 0
+            script:
+                $temp.plantMessages = "";
+                $temp.index = 0;
+                while ($temp.index < $temp.response.data.results.length) {
+                    $temp.plantMessages += "---\n";
+                    $temp.plantMessages += "Название: " + $temp.response.data.results[$temp.index].name + "\n";
+                    $temp.plantMessages += "Цвет: " + $temp.response.data.results[$temp.index].color + "\n";
+                    $temp.plantMessages += "Размер: " + $temp.response.data.results[$temp.index].size + "\n";
+                    $temp.plantMessages += "Тип: " + $temp.response.data.results[$temp.index].type + "\n";
+                    $temp.plantMessages += "Ссылка: " + $temp.response.data.results[$temp.index].link + "\n";
+                    $temp.index++;
+                }
+            a: |
+                Вот несколько растений, которые мы нашли:
+                {{$temp.plantMessages}}
+        else: 
+            # Если растения не найдены или произошла ошибка
+            a: Не удалось найти растения по вашим параметрам. Попробуй ещё раз.
