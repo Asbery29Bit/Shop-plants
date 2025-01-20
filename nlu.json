@@ -221,7 +221,7 @@
     },
     "patterns" : [ ],
     "slots" : [ {
-      "name" : "Цвет",
+      "name" : " Color",
       "entity" : "Color",
       "required" : true,
       "prompts" : [ "Пожалуйста, уточните цвет" ]
