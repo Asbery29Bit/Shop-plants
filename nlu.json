@@ -198,7 +198,7 @@
     "patterns" : [ ],
     "slots" : [ {
       "name" : "recipient",
-      "entity" : "Color",
+      "entity" : "Recipient",
       "required" : true,
       "prompts" : [ ]
     } ],

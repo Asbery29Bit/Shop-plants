@@ -19,7 +19,6 @@ theme: /
             $session.recipient = userInput.match(/бабу*|сын*|внучк*|самого себя|себе/i) ? userInput.match(/бабушки|сын|внучка|самого себя|себе|бабушка|внучке|сыну|самому себе/i)[0] : "неизвестному получателю";
             $session.myResult = "Ответьте на пару наших вопросов и мы подберем растение для " + $session.recipient + ".";
         a: {{ $session.myResult }}
-        a: Какой цвет растения вы бы хотели?
         go: /Запрос цвета
         event: noMatch || toState = "./"
         
@@ -47,7 +46,7 @@ theme: /
             $session.color = $parseTree._Цвет;
         if: $session.color == undefined
             a: Я не понял. Вы сказали: {{$request.query}}
-            go!: /Уточнение цвета
+            go!: /Запрос цвета
         else: 
             a: вы выбрали цвет {{$session.color}}
             go!: /Уточнение размера
