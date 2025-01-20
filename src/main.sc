@@ -29,7 +29,7 @@ theme: /
         script:
             $session.color = $parseTree._color;
         if: $session.color == undefined
-            a: Я не понял цвет. Вы сказали: {{$request.query}}
+            a: Вы сказали: "{{$request.query}}". Но растения такого цвета я не знаю, пожалуйста, укажите другой
             go: /Уточнение цвета
         else: 
             a: вы выбрали цвет {{$session.color}}
@@ -46,7 +46,7 @@ theme: /
         script:
             $session.size = $parseTree._size;
         if: $session.size == undefined
-            a: Я не понял размер. Вы сказали: {{$request.query}}
+            a: Вы сказали: "{{$request.query}}". Но растения такого размера я не знаю, пожалуйста, укажите другой
             go: /Уточнение размера
         else: 
             a: вы выбрали размер {{$session.size}}
@@ -63,7 +63,7 @@ theme: /
         script:
             $session.type = $parseTree._type;
         if: $session.type == undefined
-            a: Я не понял тип. Вы сказали: {{$request.query}}
+            a: Вы сказали: "{{$request.query}}". Но растения такого типа я не знаю, пожалуйста, укажите другой
             go: /Уточнение типа
         else: 
             a: вы выбрали тип {{$session.type}}
