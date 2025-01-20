@@ -20,7 +20,7 @@ theme: /
             $session.myResult = "Ответьте на пару наших вопросов и мы подберем растение для " + $session.recipient + ".";
         a: {{ $session.myResult }}
         a: Какой цвет растения вы бы хотели?
-        go: /Уточнение цвета
+        go: /Запрос цвета
         event: noMatch || toState = "./"
         
         
