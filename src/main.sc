@@ -134,3 +134,9 @@ theme: /
         event: noMatch || toState = "./"
         buttons:
             "Вернутся в начало" -> /Приветствие
+
+    state: проверка цвета
+        if: $session.color == undefined
+            go!: /Уточнение цвета
+        else: 
+            go!: /Уточнение размера
