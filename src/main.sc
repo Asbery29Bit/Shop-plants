@@ -72,22 +72,22 @@ theme: /
         
     
     state: Запрос размера
-        a: Какого цвета растение вы бы хотели?
+        a: Какого размера растение вы бы хотели?
         buttons:
-            "Не указывать" -> /Уточнение размера
-        intent: /Уточнение цвета || toState = "/Уточнение цвета"
+            "Не указывать" -> /Уточнение типа
+        intent: /Уточнение размера || toState = "/Уточнение размера"
         event: noMatch || toState = "./"
         
-    state: Уточнение цвета
-        intent: /Уточнение цвета
+    state: Уточнение размера
+        intent: /Уточнение размера
         script:
-            $session.color = $parseTree._Цвет;
-        if: $session.color == undefined
+            $session.size = $parseTree._Размер;
+        if: $session.size == undefined
             a: Я не понял. Вы сказали: {{$request.query}}
-            go!: /Запрос цвета
+            go!: /Запрос размера
         else: 
-            a: вы выбрали цвет {{$session.color}}
-            go!: /Уточнение размера
+            a: вы выбрали размер {{$session.size}}
+            go!: /Уточнение типа
         event: noMatch || toState = "./"
         
         
