@@ -25,24 +25,6 @@
     }
   },
   "intents" : [ {
-    "path" : "/Да",
-    "enabled" : true,
-    "shared" : false,
-    "phrases" : [ {
-      "text" : "кверти"
-    } ],
-    "classificationRules" : {
-      "refs" : [ ]
-    },
-    "patterns" : [ ],
-    "slots" : [ {
-      "name" : "Алоэ",
-      "entity" : "Имя_растения",
-      "required" : true,
-      "prompts" : [ ]
-    } ],
-    "priority" : 0
-  }, {
     "path" : "/Приветствие",
     "enabled" : true,
     "shared" : false,
@@ -204,15 +186,112 @@
     }, {
       "text" : "Сделать заказ"
     }, {
-      "text" : "Купить растение"
+      "text" : "Купить растение себе"
     }, {
-      "text" : "Хочу купить растение"
+      "text" : "Хочу купить растение для бабушки"
+    }, {
+      "text" : "Хочу белый цветок в подарок"
     } ],
     "classificationRules" : {
       "refs" : [ ]
     },
     "patterns" : [ ],
     "slots" : [ ],
+    "priority" : 0
+  }, {
+    "path" : "/Уточнение цвета",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "slots" : [ {
+      "name" : "Цвет",
+      "entity" : "Color",
+      "required" : true,
+      "prompts" : [ "Пожалуйста, уточните цвет" ]
+    } ],
+    "priority" : 0
+  }, {
+    "path" : "/Подбор растений",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "slots" : [ {
+      "name" : "Цвет",
+      "entity" : "Color",
+      "required" : true,
+      "prompts" : [ ]
+    }, {
+      "name" : "Размер",
+      "entity" : "Size",
+      "required" : true,
+      "prompts" : [ ]
+    }, {
+      "name" : "Тип",
+      "entity" : "Type",
+      "required" : true,
+      "prompts" : [ ]
+    }, {
+      "name" : "Название",
+      "entity" : "Name",
+      "required" : true,
+      "prompts" : [ ]
+    } ],
+    "priority" : 0
+  }, {
+    "path" : "/Обработка ответа",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "slots" : [ {
+      "name" : "Получатель",
+      "entity" : "Recipient",
+      "required" : true,
+      "prompts" : [ ]
+    } ],
+    "priority" : 0
+  }, {
+    "path" : "/Уточнение размера",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "slots" : [ {
+      "name" : "Размер",
+      "entity" : "Размер",
+      "required" : true,
+      "prompts" : [ "Уточните размер растения" ]
+    } ],
+    "priority" : 0
+  }, {
+    "path" : "/Уточнение типа",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "slots" : [ {
+      "name" : "Тип",
+      "entity" : "Type",
+      "required" : true,
+      "prompts" : [ "Пожалуйста, уточните тип растения" ]
+    } ],
     "priority" : 0
   } ],
   "entities" : [ {
@@ -244,7 +323,7 @@
     } ]
   }, {
     "entity" : {
-      "name" : "Размер",
+      "name" : "Size",
       "enabled" : true,
       "shared" : false,
       "type" : "annotation",
@@ -271,7 +350,7 @@
     } ]
   }, {
     "entity" : {
-      "name" : "Имя_растения",
+      "name" : "Name",
       "enabled" : true,
       "shared" : false,
       "type" : "annotation",
@@ -448,11 +527,85 @@
     },
     "records" : [ {
       "type" : "synonyms",
-      "rule" : [ "Green" ],
+      "rule" : [ "Красный" ],
       "value" : ""
     }, {
       "type" : "synonyms",
       "rule" : [ "Белый" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Синий" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Розовый" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Зеленый" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Желтый" ],
+      "value" : ""
+    } ]
+  }, {
+    "entity" : {
+      "name" : "Recipient",
+      "enabled" : true,
+      "shared" : false,
+      "type" : "annotation",
+      "priority" : 1,
+      "noSpelling" : true,
+      "noMorph" : false,
+      "phoneticSearch" : false,
+      "fuzzySearch" : false,
+      "client" : false,
+      "hidden" : false
+    },
+    "records" : [ {
+      "type" : "synonyms",
+      "rule" : [ "Бабушка" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Мама" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Дедушка" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Сестра" ],
+      "value" : ""
+    } ]
+  }, {
+    "entity" : {
+      "name" : "Type",
+      "enabled" : true,
+      "shared" : false,
+      "type" : "annotation",
+      "priority" : 1,
+      "noSpelling" : true,
+      "noMorph" : false,
+      "phoneticSearch" : false,
+      "fuzzySearch" : false,
+      "client" : false,
+      "hidden" : false
+    },
+    "records" : [ {
+      "type" : "synonyms",
+      "rule" : [ "Цветок" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Кустарник" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Дерево" ],
       "value" : ""
     } ]
   } ],
