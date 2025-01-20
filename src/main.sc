@@ -48,7 +48,6 @@ theme: /
         script:
             $session.color = $parseTree._Color
         if: $session.color == undefined
-            a: вы выбрали цвет {{$session.color}}
             a: Я не понял. Вы сказали: {{$request.query}}
             go!: /Запрос цвета
         else: 
