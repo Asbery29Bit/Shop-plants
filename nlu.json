@@ -196,7 +196,12 @@
       "refs" : [ ]
     },
     "patterns" : [ ],
-    "slots" : [ ],
+    "slots" : [ {
+      "name" : "recipient",
+      "entity" : "Color",
+      "required" : true,
+      "prompts" : [ ]
+    } ],
     "priority" : 0
   }, {
     "path" : "/Уточнение цвета",
