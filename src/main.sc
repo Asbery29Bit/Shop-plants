@@ -28,10 +28,10 @@ theme: /
             $session.recipient = $parseTree._recipient;
         if: $session.recipient == undefined
             a: Ответьте на пару наших вопросов, и мы подберем растение для неизвестного получателя.
-            go: /Уточнение цвета
+            go: /Запрос цвета
         else: 
             a: Ответьте на пару наших вопросов, и мы подберем растение для {{$session.recipient}}
-            go: /Уточнение цвета
+            go: /Запрос цвета
         event: noMatch || toState = "./"
 
         
