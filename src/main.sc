@@ -6,21 +6,9 @@ theme: /
         buttons:
             {text: "Наш сайт", url: "https://elovpark.ru/"}
             "Корзина" -> /Корзина
-            "Оформление заказа" -> /Оформление заказа
         go: /Оформление заказа
         intent: /sys/aimylogic/ru/parting || toState = "/Проверка"
         event: noMatch || toState = "/Обработка ответа"
-    
-    state: Обработка ответа
-        q!: * # Ответ пользователя
-        script:
-            var userInput = $parseTree.text ? $parseTree.text.toLowerCase() : '';
-                // Определяем, для кого нужны цветы
-                $session.recipient = userInput.match(/бабу*|сын*|внучк*|самого себя|себе/i) ? userInput.match(/бабушки|сын|внучка|самого себя|себе|бабушка|внучке|сыну|самому себе/i)[0] : "неизвестному получателю";
-                $session.myResult = "Ответьте на пару наших вопросов и мы подберем растение для " + $session.recipient + ".";
-        a: {{ $session.myResult }}
-        go!: /Запрос цвета
-        event: noMatch || toState = "./"
         
     state: Оформление заказа
         intent!: /Оформление заказа
