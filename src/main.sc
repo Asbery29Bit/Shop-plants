@@ -113,9 +113,9 @@ theme: /
             ];
     
             var matches = plants.filter(function(plant) {
-                return plant.color === $session.selectedColor &&
-                       plant.size === $session.selectedSize &&
-                       plant.type === $session.selectedType;
+                return plant.color === $session.color &&
+                       plant.size === $session.size &&
+                       plant.type === $session.type;
             });
     
             if (matches.length > 0) {
