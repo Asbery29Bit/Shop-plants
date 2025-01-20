@@ -71,28 +71,26 @@ theme: /
         
         
     
-    state: Уточнение размера
-        q!: * # Пользовательский текст
-        script:
-            var userInput = $parseTree.text ? $parseTree.text.toLowerCase() : '';
-            if (!userInput) {
-                $session.myResult = "Пожалуйста, укажите размер растения.";
-                return { toState: "/Уточнение размера" }; // Повторяем вопрос
-            } else {
-                var sizeMatch = userInput.match(/большой|средний|маленький/i);
-                
-                if (sizeMatch) {
-                       $session.selectedSize = sizeMatch[0];
-                       $session.myResult = "Вы выбрали размер: " + $session.selectedSize + ".";
-                   } else {
-                       $session.myResult = "Я не распознал размер. Пожалуйста, укажите один из следующих размеров: маленький, средний, большой.";
-                       return { toState: "/Уточнение размера" };
-                   }
-            }
-        a: {{ $session.myResult }}
-        a: Какой тип растения вы бы хотели?
-        go: /Уточнение типа
+    state: Запрос размера
+        a: Какого цвета растение вы бы хотели?
+        buttons:
+            "Не указывать" -> /Уточнение размера
+        intent: /Уточнение цвета || toState = "/Уточнение цвета"
         event: noMatch || toState = "./"
+        
+    state: Уточнение цвета
+        intent: /Уточнение цвета
+        script:
+            $session.color = $parseTree._Цвет;
+        if: $session.color == undefined
+            a: Я не понял. Вы сказали: {{$request.query}}
+            go!: /Запрос цвета
+        else: 
+            a: вы выбрали цвет {{$session.color}}
+            go!: /Уточнение размера
+        event: noMatch || toState = "./"
+        
+        
     
     state: Уточнение типа
         q!: * # Пользовательский текст
