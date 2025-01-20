@@ -26,23 +26,26 @@ theme: /
     state: Оформление заказа
         intent: /Оформление заказа
         script:
-            // Проверяем, есть ли в интенте информация о получателе
-            var recipientMatch = $request.intents.some(function(intent) {
-                return intent.slots && intent.slots.recipient;
-            });
-    
-            if (recipientMatch) {
-                // Если информация есть, берем значение из слота
-                $session.recipient = $request.intents[0].slots.recipient.value;
-            } else {
-                // Если нет, устанавливаем получателя как "неизвестного"
+            // Проверяем, есть ли интенты в запросе
+            if (!$request.intents || !$request.intents.length) {
                 $session.recipient = "неизвестному получателю";
+            } else {
+                // Проверяем, есть ли нужный слот в первом интенте
+                var recipientIntent = $request.intents.find(function(intent) {
+                    return intent.slots && intent.slots.recipient;
+                });
+    
+                if (recipientIntent && recipientIntent.slots.recipient) {
+                    $session.recipient = recipientIntent.slots.recipient.value;
+                } else {
+                    $session.recipient = "неизвестному получателю";
+                }
             }
     
             $session.myResult = "Ответьте на пару наших вопросов, и мы подберем растение для " + $session.recipient + ".";
         a: {{ $session.myResult }}
         a: Какой цвет растения вы бы хотели?
-        go: /Запрос цвета
+        go: /Уточнение цвета
         event: noMatch || toState = "./"
 
         
