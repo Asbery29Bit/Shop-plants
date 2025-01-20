@@ -3,11 +3,12 @@ theme: /
     state: Приветствие
         q!: $regex</start>
         a: Здравствуйте! Чем могу помочь?
-        go: /Обработка ответа
+        
         buttons:
             {text: "Наш сайт", url: "https://elovpark.ru/"}
             "Корзина" -> /Корзина
             "Оформление заказа" -> /Оформление заказа
+        go!: /Обработка ответа
         intent: /sys/aimylogic/ru/parting || toState = "/Проверка"
         event: noMatch || toState = "/Обработка ответа"
     
