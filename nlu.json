@@ -283,6 +283,8 @@
     "shared" : false,
     "phrases" : [ {
       "text" : "Размер растения @size"
+    }, {
+      "text" : "@size"
     } ],
     "classificationRules" : {
       "refs" : [ ]
@@ -309,7 +311,7 @@
     "slots" : [ {
       "name" : "type",
       "entity" : "type",
-      "required" : true,
+      "required" : false,
       "prompts" : [ "Пожалуйста, уточните тип растения" ]
     } ],
     "priority" : 0
