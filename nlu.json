@@ -209,6 +209,8 @@
     "shared" : false,
     "phrases" : [ {
       "text" : "Я бы хотел красного цвета"
+    }, {
+      "text" : "Красный"
     } ],
     "classificationRules" : {
       "refs" : [ ]
@@ -274,7 +276,9 @@
     "path" : "/Уточнение размера",
     "enabled" : true,
     "shared" : false,
-    "phrases" : [ ],
+    "phrases" : [ {
+      "text" : "Большой"
+    } ],
     "classificationRules" : {
       "refs" : [ ]
     },
@@ -290,7 +294,9 @@
     "path" : "/Уточнение типа",
     "enabled" : true,
     "shared" : false,
-    "phrases" : [ ],
+    "phrases" : [ {
+      "text" : "Цветок"
+    } ],
     "classificationRules" : {
       "refs" : [ ]
     },
