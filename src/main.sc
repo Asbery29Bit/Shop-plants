@@ -37,7 +37,7 @@ theme: /
         event: noMatch || toState = "./"
         
     state: Уточнение цвета
-        intent: /Уточнение цвета
+        intent!: /Уточнение цвета
         script:
             $session.color = $parseTree._color;
         if: $session.color == undefined
