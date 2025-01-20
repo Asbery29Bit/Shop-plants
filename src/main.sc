@@ -64,7 +64,7 @@ theme: /
         script:
             $session.size = $parseTree._Размер;
         if: $session.size == undefined
-            a: Я не понял. Вы сказали: {{$request.query}}
+            a: Я не понял размер. Вы сказали: {{$request.query}}
             go!: /Запрос размера
         else: 
             a: вы выбрали размер {{$session.size}}
