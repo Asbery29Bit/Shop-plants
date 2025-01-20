@@ -53,7 +53,7 @@ theme: /
         
     
     state: Уточнение размера
-        intent: /Уточнение размера
+        intent!: /Уточнение размера
         script:
             $session.size = $parseTree._size;
         if: $session.size == undefined
