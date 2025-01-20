@@ -222,7 +222,7 @@
     "patterns" : [ ],
     "slots" : [ {
       "name" : "color",
-      "entity" : "Color",
+      "entity" : "color",
       "required" : false,
       "prompts" : [ "Пожалуйста, уточните цвет" ],
       "array" : false

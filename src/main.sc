@@ -31,7 +31,7 @@ theme: /
             go!: /Запрос цвета
         else: 
             a: Ответьте на пару наших вопросов, и мы подберем растение для {{$session.recipient}}
-            go!: /Запрос цвета
+            go!: /Уточнение цвета
         event: noMatch || toState = "./"
 
         
@@ -53,7 +53,7 @@ theme: /
         else: 
             a: вы выбрали цвет {{$session.color}}
             go!: /Уточнение размера
-        intent: /Уточнение цвета || toState = "/Запрос цвета"
+        intent: /Уточнение цвета || toState = "./"
         event: noMatch || toState = "./"
 
     state: Запрос размера
