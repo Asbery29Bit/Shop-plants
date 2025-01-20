@@ -23,7 +23,7 @@ theme: /
         event: noMatch || toState = "./"
         
     state: Оформление заказа
-        intent!: /Оформление заказа
+        intent: /Оформление заказа
         script:
             $session.recipient = $parseTree._recipient;
         if: $session.recipient == undefined
