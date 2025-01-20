@@ -46,17 +46,16 @@ theme: /
     state: Уточнение цвета
         intent: /Уточнение цвета
         script:
-            $session.color = $parseTree._color;
+            $session.color = $parseTree.color;
         if: $session.color == undefined
             a: Я не понял. Вы сказали: {{$request.query}}
             go!: /Запрос цвета
         else: 
             a: вы выбрали цвет {{$session.color}}
             go!: /Уточнение размера
+        intent: /Уточнение цвета || toState = "/Уточнение цвета"
         event: noMatch || toState = "./"
-        
-        
-    
+
     state: Запрос размера
         a: Какого размера растение вы бы хотели?
         buttons:
