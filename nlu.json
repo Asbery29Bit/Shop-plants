@@ -208,13 +208,7 @@
     "enabled" : true,
     "shared" : false,
     "phrases" : [ {
-      "text" : "Я бы хотел красного цвета"
-    }, {
-      "text" : "Красный"
-    }, {
-      "text" : "Желтые"
-    }, {
-      "text" : "Зеленое"
+      "text" : "@color"
     } ],
     "classificationRules" : {
       "refs" : [ ]
@@ -302,7 +296,7 @@
     "enabled" : true,
     "shared" : false,
     "phrases" : [ {
-      "text" : "Цветок"
+      "text" : "@type"
     } ],
     "classificationRules" : {
       "refs" : [ ]
