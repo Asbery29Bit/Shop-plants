@@ -25,12 +25,7 @@ theme: /
     state: Оформление заказа
         intent!: /Оформление заказа
         script:
-            // Проверяем, существует ли _recipient в parseTree и является ли это строкой
-            if ($parseTree._recipient && typeof $parseTree._recipient === 'string') {
-                $session.recipient = $parseTree._recipient;
-            } else {
-                $session.recipient = undefined;
-            }
+            $session.recipient = $parseTree._recipient;
         if: $session.recipient == undefined
             a: Ответьте на пару наших вопросов, и мы подберем растение для неизвестного получателя.
             go!: /Запрос цвета
