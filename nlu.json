@@ -290,7 +290,7 @@
     "patterns" : [ ],
     "slots" : [ {
       "name" : "size",
-      "entity" : "Размер",
+      "entity" : "size",
       "required" : false,
       "prompts" : [ "Уточните размер растения" ]
     } ],
@@ -308,8 +308,8 @@
     "patterns" : [ ],
     "slots" : [ {
       "name" : "type",
-      "entity" : "Type",
-      "required" : false,
+      "entity" : "type",
+      "required" : true,
       "prompts" : [ "Пожалуйста, уточните тип растения" ]
     } ],
     "priority" : 0
