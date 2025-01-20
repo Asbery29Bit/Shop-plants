@@ -182,15 +182,15 @@
     "enabled" : true,
     "shared" : false,
     "phrases" : [ {
-      "text" : "Оформление заказа"
+      "text" : "Нужен цветок для @Recipient"
     }, {
-      "text" : "Сделать заказ"
+      "text" : "Заказать цветы для @Recipient"
     }, {
-      "text" : "Купить растение себе"
+      "text" : "Купить растение @Recipient"
     }, {
-      "text" : "Хочу купить растение для бабушки"
+      "text" : "Хочу купить растение для @Recipient"
     }, {
-      "text" : "Хочу белый цветок в подарок"
+      "text" : "Хочу белый цветок в подарок @Recipient"
     }, {
       "text" : "@Recipient"
     } ],
@@ -211,6 +211,12 @@
     "shared" : false,
     "phrases" : [ {
       "text" : "@color"
+    }, {
+      "text" : "я хочу @color"
+    }, {
+      "text" : "мне нужен @color цветок"
+    }, {
+      "text" : "мне нужно @color растение"
     } ],
     "classificationRules" : {
       "refs" : [ ]
@@ -281,6 +287,10 @@
       "text" : "Размер растения @size"
     }, {
       "text" : "@size"
+    }, {
+      "text" : "Я хотел бы @size растение"
+    }, {
+      "text" : "Мне нужно @size растение"
     } ],
     "classificationRules" : {
       "refs" : [ ]
@@ -299,6 +309,10 @@
     "shared" : false,
     "phrases" : [ {
       "text" : "@type"
+    }, {
+      "text" : "Я хочу @type"
+    }, {
+      "text" : "мне нужно @type"
     } ],
     "classificationRules" : {
       "refs" : [ ]
