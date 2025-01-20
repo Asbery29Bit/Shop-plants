@@ -224,7 +224,8 @@
       "name" : " Color",
       "entity" : "Color",
       "required" : true,
-      "prompts" : [ "Пожалуйста, уточните цвет" ]
+      "prompts" : [ "Пожалуйста, уточните цвет" ],
+      "array" : true
     } ],
     "priority" : 0
   }, {

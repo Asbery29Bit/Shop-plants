@@ -25,26 +25,13 @@ theme: /
     state: Оформление заказа
         intent!: /Оформление заказа
         script:
-            // Проверяем, есть ли интенты в запросе
-            if (!$request.intents || !$request.intents.length) {
-                $session.recipient = "неизвестному получателю";
-            } else {
-                // Проверяем, есть ли нужный слот в первом интенте
-                var recipientIntent = $request.intents.find(function(intent) {
-                    return intent.slots && intent.slots.recipient;
-                });
-    
-                if (recipientIntent && recipientIntent.slots.recipient) {
-                    $session.recipient = recipientIntent.slots.recipient.value;
-                } else {
-                    $session.recipient = "неизвестному получателю";
-                }
-            }
-    
-            $session.myResult = "Ответьте на пару наших вопросов, и мы подберем растение для " + $session.recipient + ".";
-        a: {{ $session.myResult }}
-        a: Какой цвет растения вы бы хотели?
-        go: /Уточнение цвета
+            $session.recipient = $parseTree._recipient;
+        if: $session.recipient == undefined
+            a: Ответьте на пару наших вопросов, и мы подберем растение для неизвестного получателя.
+            go: /Уточнение цвета
+        else: 
+            a: Ответьте на пару наших вопросов, и мы подберем растение для {{$session.recipient}}
+            go!: /Уточнение цвета
         event: noMatch || toState = "./"
 
         
