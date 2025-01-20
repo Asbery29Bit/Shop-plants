@@ -119,7 +119,7 @@
   }, {
     "path" : "/Информация о растении",
     "description" : "Получение информации о конкретном растении.",
-    "enabled" : true,
+    "enabled" : false,
     "shared" : false,
     "phrases" : [ {
       "text" : "Информация о растении"
