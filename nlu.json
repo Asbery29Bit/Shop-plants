@@ -289,7 +289,7 @@
     },
     "patterns" : [ ],
     "slots" : [ {
-      "name" : "Размер",
+      "name" : "size",
       "entity" : "Размер",
       "required" : true,
       "prompts" : [ "Уточните размер растения" ]
@@ -307,7 +307,7 @@
     },
     "patterns" : [ ],
     "slots" : [ {
-      "name" : "Тип",
+      "name" : "type",
       "entity" : "Type",
       "required" : true,
       "prompts" : [ "Пожалуйста, уточните тип растения" ]
@@ -343,7 +343,7 @@
     } ]
   }, {
     "entity" : {
-      "name" : "Size",
+      "name" : "size",
       "enabled" : true,
       "shared" : false,
       "type" : "annotation",
@@ -623,7 +623,7 @@
     } ]
   }, {
     "entity" : {
-      "name" : "Type",
+      "name" : "type",
       "enabled" : true,
       "shared" : false,
       "type" : "annotation",
