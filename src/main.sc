@@ -32,17 +32,17 @@ theme: /
 
         
         
-        state: Уточнение цвета
-            intent!: /Уточнение цвета
-            script:
-                $session.color = $parseTree._Цвет;
-            if: $session.color == undefined
-                a: Я не понял. Вы сказали: {{$request.query}}
-                go!: /Уточнение цвета
-            else: 
-                a: вы выбрали цвет {{$session.color}}
-                go!: /Уточнение размера
-            event: noMatch || toState = "/Инфо"
+    state: Уточнение цвета
+        intent!: /Уточнение цвета
+        script:
+            $session.color = $parseTree._Цвет;
+        if: $session.color == undefined
+            a: Я не понял. Вы сказали: {{$request.query}}
+            go!: /Уточнение цвета
+        else: 
+            a: вы выбрали цвет {{$session.color}}
+            go!: /Уточнение размера
+        event: noMatch || toState = "/Инфо"
         
         
     
