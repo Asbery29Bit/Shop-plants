@@ -111,9 +111,9 @@ theme: /
                 { name: "Клематис", color: "белый", size: "большой", type: "цветок", link:"-" },
                 { name: "Лаванда", color: "синий", size: "средний", type: "цветок", link:"-" }
             ];
-        a: тест {{$session.color}}
-        a: тест {{$session.size}}
-        a: тест {{$session.type}}
+        a: тест {{$session.color}};
+        a: тест {{$session.size}};
+        a: тест {{$session.type}};
             var matches = plants.filter(function(plant) {
                 return plant.color === $session.color &&
                        plant.size === $session.size &&
