@@ -28,29 +28,35 @@ theme: /
             $session.recipient = $parseTree._recipient;
         if: $session.recipient == undefined
             a: Ответьте на пару наших вопросов, и мы подберем растение для неизвестного получателя.
-            a: Какого цвета растение вы бы хотели?
-            go!: /Уточнение цвета
+            go!: /Запрос цвета
         else: 
             a: Ответьте на пару наших вопросов, и мы подберем растение для {{$session.recipient}}
-            a: Какого цвета растение вы бы хотели?
-            go!: /Уточнение цвета
+            go!: /Запрос цвета
+        event: noMatch || toState = "./"
+
+        
+    
+    state: Запрос цвета
+        a: Какого цвета растение вы бы хотели?
+        buttons:
+            "Не указывать" -> /Уточнение размера
+        intent: /Уточнение цвета || toState = "/Уточнение цвета"
         event: noMatch || toState = "./"
         
     state: Уточнение цвета
-        intent!: /Уточнение цвета
+        intent: /Уточнение цвета
         script:
             $session.color = $parseTree._color;
         if: $session.color == undefined
             a: Я не понял. Вы сказали: {{$request.query}}
-            go!: /Уточнение цвета
+            go!: /Запрос цвета
         else: 
             a: вы выбрали цвет {{$session.color}}
             go!: /Уточнение размера
-        buttons:
-            "Не указывать" -> /Уточнение размера    
-        intent: /Уточнение цвета || toState = "./"
         event: noMatch || toState = "./"
-
+        
+        
+    
     state: Запрос размера
         a: Какого размера растение вы бы хотели?
         buttons:
