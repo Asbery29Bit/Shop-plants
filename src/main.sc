@@ -52,51 +52,38 @@ theme: /
         
         
     
-    state: Запрос размера
-        a: Какого размера растение вы бы хотели?
-        buttons:
-            "Не указывать" -> /Уточнение типа
-        intent: /Уточнение размера || toState = "/Уточнение размера"
-        event: noMatch || toState = "./"
-        
     state: Уточнение размера
-        intent: /Уточнение размера
+        intent!: /Уточнение размера
         script:
-            $session.size = $parseTree._Размер;
+            $session.size = $parseTree._size;
         if: $session.size == undefined
             a: Я не понял размер. Вы сказали: {{$request.query}}
-            go!: /Запрос размера
+            go: /Уточнение размера
         else: 
-            a: вы выбрали размер {{$session.size}}
-            go!: /Уточнение типа
+            a: вы выбрали размер {{$session.color}}
+            go!: /Запрос типа
+        buttons:
+            "Не указывать" -> /Уточнение типа
         event: noMatch || toState = "./"
         
         
     
     state: Уточнение типа
-        q!: * # Пользовательский текст
+        intent!: /Уточнение типа
         script:
-            var userInput = $parseTree.text ? $parseTree.text.toLowerCase() : '';
-            if (!userInput) {
-                $session.myResult = "Пожалуйста, укажите тип растения.";
-                return { toState: "/Уточнение типа" }; // Повторяем вопрос
-            } else {
-                var typeMatch = userInput.match(/цветок|кустарник|дерево/i);
-                
-                if (typeMatch) {
-                       $session.selectedType = typeMatch[0];
-                       $session.myResult = "Вы выбрали тип: " + $session.selectedType + ".";
-                   } else {
-                       $session.myResult = "Я не распознал тип. Пожалуйста, укажите один из следующих типов: цветок, кустарник или дерево.";
-                       return { toState: "/Уточнение типа" };
-                   }
-            }
-        a: {{ $session.myResult }}
-        a: Подбираем подходящие варианты...
-        go!: /Подбор растений
+            $session.type = $parseTree._type;
+        if: $session.type == undefined
+            a: Я не понял тип. Вы сказали: {{$request.query}}
+            go: /Уточнение типа
+        else: 
+            a: вы выбрали тип {{$session.color}}
+            go!: /Подбор растений
+        buttons:
+            "Не указывать" -> /Подбор растений
         event: noMatch || toState = "./"
     
     state: Подбор растений
+        a: Подбираем подходящие варианты...
         script:
             var plants = [
                 { name: "Роза", color: "красный", size: "маленький", type: "цветок", link:"-"},
