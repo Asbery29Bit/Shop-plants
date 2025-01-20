@@ -7,6 +7,7 @@ theme: /
         buttons:
             {text: "Наш сайт", url: "https://elovpark.ru/"}
             "Корзина" -> /Корзина
+            "Оформление заказа" -> /Оформление заказа
         intent: /sys/aimylogic/ru/parting || toState = "/Проверка"
         event: noMatch || toState = "/Обработка ответа"
     
@@ -21,7 +22,13 @@ theme: /
         a: Какой цвет растения вы бы хотели?
         go: /Уточнение цвета
         event: noMatch || toState = "./"
-    
+        
+        
+    state: Оформление заказа
+        intent: /Оформление заказа
+        a: Какой цвет растения вы бы хотели?
+        
+        event: noMatch || toState = "./"
 
         
         
@@ -33,7 +40,7 @@ theme: /
                 a: Я не понял. Вы сказали: {{$request.query}}
                 go!: /Уточнение цвета
             else: 
-                a: вы выбрали цвет {{$session.salary}}
+                a: вы выбрали цвет {{$session.color}}
                 go!: /Уточнение размера
             event: noMatch || toState = "/Инфо"
         
