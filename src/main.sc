@@ -24,7 +24,7 @@ theme: /
         
     state: Оформление заказа
         a: Вынажали кнопку введите сообщение:
-        intent: /Оформление заказа
+        intent!: /Оформление заказа
         script:
             // Проверяем, есть ли интенты в запросе
             if (!$request.intents || !$request.intents.length) {
