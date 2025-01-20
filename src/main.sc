@@ -85,6 +85,7 @@ theme: /
         event: noMatch || toState = "./"
     
     state: Подбор растений
+        intent!: /Подбор растений
         a: Подбираем подходящие варианты...
         script:
             $temp.response = $http.post(
