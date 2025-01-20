@@ -42,7 +42,7 @@ theme: /
         else: 
             a: вы выбрали цвет {{$session.color}}
             go!: /Уточнение размера
-        event: noMatch || toState = "/Инфо"
+        event: noMatch || toState = "./"
         
         
     
