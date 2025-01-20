@@ -25,24 +25,25 @@ theme: /
     state: Уточнение цвета
         q!: * # Пользовательский текст
         script:
-            var userInput = $parseTree.text ? $parseTree.text.toLowerCase() : '';
-               if (!userInput) {
-                   $session.myResult = "Пожалуйста, укажите цвет растения.";
+           var userInput = $parseTree.text ? $parseTree.text.toLowerCase() : '';
+           if (!userInput) {
+               $session.myResult = "Пожалуйста, укажите цвет растения.";
+           } else {
+               var colorMatch = userInput.match(/зеленый|белый|красный|синий|желтый|розовый/i);
+               
+               if (colorMatch) {
+                   $session.selectedColor = colorMatch[0];
+                   $session.myResult = "Вы выбрали цвет: " + $session.selectedColor + ".";
                } else {
-                   var colorMatch = userInput.match(/зеленый|белый|красный|синий|желтый|розовый/i);
-                   if (colorMatch) {
-               $session.selectedColor = colorMatch[0];
-               $session.myResult = "Вы выбрали цвет: " + $session.selectedColor + ".";
-                   } else {
-               $session.myResult = "Я не распознал цвет. Пожалуйста, укажите один из следующих цветов: зеленый, белый, красный, синий, желтый, розовый.";
-               return { toState: "/Уточнение цвета" };
-                   }
+                   $session.myResult = "Я не распознал цвет. Пожалуйста, укажите один из следующих цветов: зеленый, белый, красный, синий, желтый, розовый.";
+                   return { toState: "/Уточнение цвета" };
                }
+           }
         a: {{ $session.myResult }}
         a: Какого размера цветок вы бы хотели?
-        go: /проверка цвета
+        go: /Уточнение размера
         event: noMatch || toState = "./"
-
+    
     state: Уточнение размера
         q!: * # Пользовательский текст
         script:
@@ -135,7 +136,7 @@ theme: /
             "Вернутся в начало" -> /Приветствие
 
     state: проверка цвета
-        if: $session.selectedColor == undefined
+        if: $session.color == undefined
             go!: /Уточнение цвета
         else: 
             go!: /Уточнение размера
