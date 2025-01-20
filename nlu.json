@@ -207,7 +207,9 @@
     "path" : "/Уточнение цвета",
     "enabled" : true,
     "shared" : false,
-    "phrases" : [ ],
+    "phrases" : [ {
+      "text" : "Я бы хотел красного цвета"
+    } ],
     "classificationRules" : {
       "refs" : [ ]
     },
