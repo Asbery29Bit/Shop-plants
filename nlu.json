@@ -499,7 +499,7 @@
     } ]
   }, {
     "entity" : {
-      "name" : "Recipient",
+      "name" : "recipient",
       "enabled" : true,
       "shared" : false,
       "type" : "annotation",
