@@ -30,11 +30,11 @@ theme: /
             $session.color = $parseTree._color;
         if: $session.color == undefined
             a: Вы сказали: "{{$request.query}}". Но растения такого цвета я не знаю, пожалуйста, укажите другой
-            go: /Уточнение цвета
+            #go: /Уточнение цвета
         else: 
             a: вы выбрали цвет {{$session.color}}
             a: Какого размера растение вы бы хотели?
-            go: /Уточнение размера
+            #go: /Уточнение размера
         buttons:
             "Не указывать" -> /Уточнение размера
         event: noMatch || toState = "./"
