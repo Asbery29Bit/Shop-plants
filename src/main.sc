@@ -8,8 +8,6 @@ theme: /
             $session.chose = false
         q!: $regex</start>
         a: Здравствуйте! Чем могу помочь?
-        buttons:
-            {text: "Наш сайт", url: "https://elovpark.ru/"}
         go: /Оформление заказа
         event: noMatch || toState = "/Обработка ответа"
         
