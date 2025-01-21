@@ -16,7 +16,11 @@ theme: /
     state: Оформление заказа
         intent!: /Оформление заказа
         script:
-            $session.recipient = $parseTree._recipient.date;
+            if ($parseTree._recipient != undefined && $parseTree._recipient.date != undefined) {
+                $session.recipient = $parseTree._recipient.date;
+            } else {
+                $session.recipient = null;
+            }
         if: $session.recipient == undefined
             a: Ответьте на пару наших вопросов, и мы подберем растение для неизвестного получателя.
             a: Какого цвета растение вы бы хотели?
