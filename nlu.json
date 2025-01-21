@@ -360,6 +360,24 @@
     } ],
     "priority" : 0
   }, {
+    "path" : "/Несогласие",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "@disagree"
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "slots" : [ {
+      "name" : "disagree",
+      "entity" : "disagree",
+      "required" : true,
+      "prompts" : [ ]
+    } ],
+    "priority" : 0
+  }, {
     "path" : "/Согласие",
     "enabled" : true,
     "shared" : false,
@@ -525,6 +543,25 @@
       "type" : "synonyms",
       "rule" : [ "Дочь", "Дочери", "Дочерей", "Дочкой", "Дочками" ],
       "value" : "{\n  \"date\": \"Дочери\"\n}"
+    } ]
+  }, {
+    "entity" : {
+      "name" : "disagree",
+      "enabled" : true,
+      "shared" : false,
+      "type" : "annotation",
+      "priority" : 1,
+      "noSpelling" : true,
+      "noMorph" : false,
+      "phoneticSearch" : false,
+      "fuzzySearch" : false,
+      "client" : false,
+      "hidden" : false
+    },
+    "records" : [ {
+      "type" : "synonyms",
+      "rule" : [ "Нет", "Отмена" ],
+      "value" : ""
     } ]
   }, {
     "entity" : {
