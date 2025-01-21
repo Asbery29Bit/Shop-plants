@@ -64,7 +64,7 @@ theme: /
         intent!: /Уточнение типа
         script:
             $session.type = undefined
-            $session.type = $parseTree._type;
+            $session.type = $parseTree._type.date;
         if: $session.type == undefined
             a: Вы сказали: "{{$request.query}}". Но растения такого типа я не знаю, пожалуйста, укажите другой
             #go: /Уточнение типа
