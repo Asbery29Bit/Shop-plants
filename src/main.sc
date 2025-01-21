@@ -27,6 +27,7 @@ theme: /
     state: Уточнение цвета
         intent!: /Уточнение цвета
         script:
+            $session.color = undefined
             $session.color = $parseTree._color;
         if: $session.color == undefined
             a: Вы сказали: "{{$request.query}}". Но растения такого цвета я не знаю, пожалуйста, укажите другой
@@ -44,6 +45,7 @@ theme: /
     state: Уточнение размера
         intent!: /Уточнение размера
         script:
+            $session.size = undefined
             $session.size = $parseTree._size;
         if: $session.size == undefined
             a: Вы сказали: "{{$request.query}}". Но растения такого размера я не знаю, пожалуйста, укажите другой
@@ -61,6 +63,7 @@ theme: /
     state: Уточнение типа
         intent!: /Уточнение типа
         script:
+            $session.type = undefined
             $session.type = $parseTree._type;
         if: $session.type == undefined
             a: Вы сказали: "{{$request.query}}". Но растения такого типа я не знаю, пожалуйста, укажите другой
