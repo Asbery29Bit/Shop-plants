@@ -1,5 +1,5 @@
 theme: /
-
+    $session.color = undefined;
     state: Приветствие
         q!: $regex</start>
         a: Здравствуйте! Чем могу помочь?
