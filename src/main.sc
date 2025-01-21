@@ -1,7 +1,6 @@
 theme: /
     
     state: Приветствие
-        $session.color! = "тест";
         q!: $regex</start>
         a: Здравствуйте! Чем могу помочь?
         buttons:
