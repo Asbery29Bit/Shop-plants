@@ -78,7 +78,10 @@ theme: /
         a: Вы задали следующие параметры: {{$session.color}}, {{$session.size}}, {{$session.type}}
         a: Все верно?
         
-    
+    state: Согласие
+        intent: /Согласие
+        go!: /Подбор растений
+            
     
     state: Подбор растений
         intent!: /Подбор растений
