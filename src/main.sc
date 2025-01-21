@@ -42,7 +42,7 @@ theme: /
         if: $session.color == null
             a: Вы сказали: "{{$request.query}}". Но растения такого цвета я не знаю, пожалуйста, укажите другой.
         else: 
-            a: вы выбрали цвет {{$session.color}}.
+            a: Вы выбрали цвет {{$session.color}}.
             a: Какого размера растение вы бы хотели?
             go: /Уточнение размера
         event: noMatch || toState = "./"
@@ -61,7 +61,7 @@ theme: /
             a: Вы сказали: "{{$request.query}}". Но растения такого размера я не знаю, пожалуйста, укажите другой
             #go: /Уточнение размера
         else: 
-            a: вы выбрали размер {{$session.size}}
+            a: Вы выбрали размер {{$session.size}}
             a: Какой тип растения вы бы хотели?
             go: /Уточнение типа
         event: noMatch || toState = "./"
@@ -80,7 +80,7 @@ theme: /
             a: Вы сказали: "{{$request.query}}". Но растения такого типа я не знаю, пожалуйста, укажите другой
             #go: /Уточнение типа
         else: 
-            a: вы выбрали тип {{$session.type}}
+            a: Вы выбрали тип {{$session.type}}
             go!: /Проверка
         event: noMatch || toState = "./"
         
@@ -93,14 +93,18 @@ theme: /
     state: Проверка
         script:
             $session.chose = true;
-        a: Вы задали следующие параметры: \n {{$session.color}}, {{$session.size}}, {{$session.type}}
+        a: Вы задали следующие параметры: \n{{$session.color}}, {{$session.size}}, {{$session.type}}
         a: Все верно?
         event: noMatch || toState = "/Не понял"
         
     state: Согласие
         intent: /Согласие
         if: $session.chose == true
-            script: $session.chose = false
+            script: 
+                $session.chose = false
+                $session.color = null
+                $session.size = null
+                $session.type = null
             go!: /Подбор растений
         else:
             a: Извините я не понял, пожалуйста, повторите запрос
@@ -109,7 +113,11 @@ theme: /
     state: Несогласие
         intent: /Несогласие
         if: $session.chose == true
-            script: $session.chose = false
+            script: 
+                $session.chose = false
+                $session.color = null
+                $session.size = null
+                $session.type = null
             a: Хорошо, давайте начнем сначала
             a: Какого цвета растение вы бы хотели?
             go: /Уточнение цвета
