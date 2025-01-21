@@ -100,9 +100,6 @@ theme: /
         if: $session.chose == true
             script: 
                 $session.chose = false
-                $session.color = null
-                $session.size = null
-                $session.type = null
             go!: /Подбор растений
         else:
             a: Извините я не понял, пожалуйста, повторите запрос
@@ -140,6 +137,9 @@ theme: /
                     }
                 }
             );
+            $session.color = null
+            $session.size = null
+            $session.type = null
         # Отправляем запрос на внешний API для поиска растений
         if: $temp.response.isOk && $temp.response.data.results.length > 0
             script:
