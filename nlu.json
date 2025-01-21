@@ -212,7 +212,7 @@
     "patterns" : [ ],
     "slots" : [ {
       "name" : "recipient",
-      "entity" : "Recipient",
+      "entity" : "recipient",
       "required" : true,
       "prompts" : [ ]
     } ],
