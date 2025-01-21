@@ -43,7 +43,7 @@
   }, {
     "path" : "/Поиск растений",
     "description" : "Поиск растений по различным критериям.",
-    "enabled" : true,
+    "enabled" : false,
     "shared" : false,
     "phrases" : [ {
       "text" : "Растение для комнаты"
@@ -357,6 +357,22 @@
       "entity" : "type",
       "required" : false,
       "prompts" : [ "Пожалуйста, уточните тип растения" ]
+    } ],
+    "priority" : 0
+  }, {
+    "path" : "/Проверка",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "slots" : [ {
+      "name" : "check",
+      "entity" : "check",
+      "required" : true,
+      "prompts" : [ ]
     } ],
     "priority" : 0
   }, {
@@ -685,6 +701,21 @@
       "rule" : [ "Дочь", "Дочери", "Дочерей", "Дочкой", "Дочками" ],
       "value" : ""
     } ]
+  }, {
+    "entity" : {
+      "name" : "check",
+      "enabled" : true,
+      "shared" : false,
+      "type" : "annotation",
+      "priority" : 1,
+      "noSpelling" : true,
+      "noMorph" : false,
+      "phoneticSearch" : false,
+      "fuzzySearch" : false,
+      "client" : false,
+      "hidden" : false
+    },
+    "records" : [ ]
   }, {
     "entity" : {
       "name" : "type",
