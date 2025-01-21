@@ -28,7 +28,7 @@ theme: /
         intent!: /Уточнение цвета
         script:
             $session.color = undefined
-            $session.color = $parseTree._color;
+            $session.color = $parseTree._color.date;
         if: $session.color == undefined
             a: Вы сказали: "{{$request.query}}". Но растения такого цвета я не знаю, пожалуйста, укажите другой
             #go: /Уточнение цвета
@@ -64,7 +64,7 @@ theme: /
         intent!: /Уточнение типа
         script:
             $session.type = undefined
-            $session.type = $parseTree._type.date;
+            $session.type = $parseTree._type;
         if: $session.type == undefined
             a: Вы сказали: "{{$request.query}}". Но растения такого типа я не знаю, пожалуйста, укажите другой
             #go: /Уточнение типа
