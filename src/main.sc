@@ -1,9 +1,10 @@
 theme: /
     
     state: Приветствие
-        $session.color = 0
-        $session.size = 0
-        $session.type = 0
+        script:
+            $session.color = null
+            $session.size = null
+            $session.type = null
         q!: $regex</start>
         a: Здравствуйте! Чем могу помочь?
         buttons:
