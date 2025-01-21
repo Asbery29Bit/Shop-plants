@@ -360,22 +360,6 @@
     } ],
     "priority" : 0
   }, {
-    "path" : "/Проверка",
-    "enabled" : true,
-    "shared" : false,
-    "phrases" : [ ],
-    "classificationRules" : {
-      "refs" : [ ]
-    },
-    "patterns" : [ ],
-    "slots" : [ {
-      "name" : "check",
-      "entity" : "check",
-      "required" : true,
-      "prompts" : [ ]
-    } ],
-    "priority" : 0
-  }, {
     "path" : "/Согласие",
     "enabled" : true,
     "shared" : false,
@@ -395,33 +379,6 @@
     "priority" : 0
   } ],
   "entities" : [ {
-    "entity" : {
-      "name" : "Температура",
-      "enabled" : true,
-      "shared" : false,
-      "type" : "annotation",
-      "priority" : 1,
-      "noSpelling" : true,
-      "noMorph" : false,
-      "phoneticSearch" : false,
-      "fuzzySearch" : false,
-      "client" : false,
-      "hidden" : false
-    },
-    "records" : [ {
-      "type" : "synonyms",
-      "rule" : [ "Комнатная", "Комнатные", "Комнатному", "Комнатной", "Комнатными" ],
-      "value" : "{\"name\":\"Комнатная\"}"
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "Прохладная", "Прохладные", "Прохладному", "Прохладной", "Прохладными" ],
-      "value" : "{\"name\":\"Прохладная\"}"
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "Теплая", "Теплые", "Теплому", "Теплой", "Теплыми" ],
-      "value" : "{\"name\":\"Теплая\"}"
-    } ]
-  }, {
     "entity" : {
       "name" : "size",
       "enabled" : true,
@@ -481,138 +438,6 @@
     }, {
       "type" : "synonyms",
       "rule" : [ "Спатифиллум" ],
-      "value" : ""
-    } ]
-  }, {
-    "entity" : {
-      "name" : "Световые_условия",
-      "enabled" : true,
-      "shared" : false,
-      "type" : "annotation",
-      "priority" : 1,
-      "noSpelling" : true,
-      "noMorph" : false,
-      "phoneticSearch" : false,
-      "fuzzySearch" : false,
-      "client" : false,
-      "hidden" : false
-    },
-    "records" : [ {
-      "type" : "synonyms",
-      "rule" : [ "Ярко" ],
-      "value" : ""
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "Умеренные" ],
-      "value" : ""
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "Полутень" ],
-      "value" : ""
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "Тень" ],
-      "value" : ""
-    } ]
-  }, {
-    "entity" : {
-      "name" : "Частота_полива",
-      "enabled" : true,
-      "shared" : false,
-      "type" : "annotation",
-      "priority" : 1,
-      "noSpelling" : true,
-      "noMorph" : false,
-      "phoneticSearch" : false,
-      "fuzzySearch" : false,
-      "client" : false,
-      "hidden" : false
-    },
-    "records" : [ {
-      "type" : "synonyms",
-      "rule" : [ "имя" ],
-      "value" : "значение"
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "Регулярная", "Регулярные", "Регулярному", "Регулярной", "Регулярными" ],
-      "value" : "{\"name\":\"Регулярная\"}"
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "Редкая", "Редкие", "Редкому", "Редкой", "Редкими" ],
-      "value" : "{\"name\":\"Редкая\"}"
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "Умеренная", "Умеренные", "Умеренному", "Умеренной", "Умеренными" ],
-      "value" : "{\"name\":\"Умеренная\"}"
-    } ]
-  }, {
-    "entity" : {
-      "name" : "Описание",
-      "enabled" : true,
-      "shared" : false,
-      "type" : "annotation",
-      "priority" : 1,
-      "noSpelling" : true,
-      "noMorph" : false,
-      "phoneticSearch" : false,
-      "fuzzySearch" : false,
-      "client" : false,
-      "hidden" : false
-    },
-    "records" : [ {
-      "type" : "synonyms",
-      "rule" : [ "Фикус — популярное комнатное растение, известное своими крупными зелеными листьями. Он предпочитает умеренный свет и регулярный полив." ],
-      "value" : ""
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "суккулент, известный своими лечебными свойствами. Он неприхотлив в уходе, предпочитает яркий свет и редкий полив." ],
-      "value" : ""
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "Эчеверия — еще один популярный суккулент с мясистыми листьями. Она любит яркий свет и умеренный полив." ],
-      "value" : ""
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "Папоротник — тенелюбивое растение, идеально подходящее для помещений с низким уровнем освещенности. Ему требуется высокая влажность и регулярное опрыскивание." ],
-      "value" : ""
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "Спатифиллум — элегантное растение с белыми цветами, также известное как \"лилия мира\"" ],
-      "value" : ""
-    } ]
-  }, {
-    "entity" : {
-      "name" : "Цена",
-      "enabled" : true,
-      "shared" : false,
-      "type" : "annotation",
-      "priority" : 1,
-      "noSpelling" : true,
-      "noMorph" : false,
-      "phoneticSearch" : false,
-      "fuzzySearch" : false,
-      "client" : false,
-      "hidden" : false
-    },
-    "records" : [ {
-      "type" : "synonyms",
-      "rule" : [ "1500 руб." ],
-      "value" : ""
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "2500 руб." ],
-      "value" : ""
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "5000 руб." ],
-      "value" : ""
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "7000 руб." ],
-      "value" : ""
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "3000 руб." ],
       "value" : ""
     } ]
   }, {
@@ -701,21 +526,6 @@
       "rule" : [ "Дочь", "Дочери", "Дочерей", "Дочкой", "Дочками" ],
       "value" : "{\n  \"date\": \"Дочери\"\n}"
     } ]
-  }, {
-    "entity" : {
-      "name" : "check",
-      "enabled" : true,
-      "shared" : false,
-      "type" : "annotation",
-      "priority" : 1,
-      "noSpelling" : true,
-      "noMorph" : false,
-      "phoneticSearch" : false,
-      "fuzzySearch" : false,
-      "client" : false,
-      "hidden" : false
-    },
-    "records" : [ ]
   }, {
     "entity" : {
       "name" : "type",
