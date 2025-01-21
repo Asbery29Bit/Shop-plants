@@ -88,7 +88,7 @@ theme: /
     state: Проверка
         a: Вы задали следующие параметры: \n {{$session.color}}, {{$session.size}}, {{$session.type}}
         a: Все верно?
-        event: noMatch || toState = "Не понял"
+        event: noMatch || toState = "./"
         
     state: Согласие
         intent: /Согласие
