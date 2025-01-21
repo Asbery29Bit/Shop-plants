@@ -51,7 +51,11 @@ theme: /
     state: Уточнение размера
         intent!: /Уточнение размера
         script:
-            $session.size = $parseTree._size;
+            if ($parseTree._size != undefined && $parseTree._size.date != undefined) {
+                $session.size = $parseTree._size.date;
+            } else {
+                $session.size = null;
+            }
         if: $session.size == undefined
             a: Вы сказали: "{{$request.query}}". Но растения такого размера я не знаю, пожалуйста, укажите другой
             #go: /Уточнение размера
@@ -68,7 +72,11 @@ theme: /
     state: Уточнение типа
         intent!: /Уточнение типа
         script:
-            $session.type = $parseTree._type;
+            if ($parseTree._type != undefined && $parseTree._type.date != undefined) {
+                $session.type = $parseTree._type.date;
+            } else {
+                $session.type = null;
+            }
         if: $session.type == undefined
             a: Вы сказали: "{{$request.query}}". Но растения такого типа я не знаю, пожалуйста, укажите другой
             #go: /Уточнение типа
