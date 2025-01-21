@@ -47,11 +47,11 @@ theme: /
             $session.size = $parseTree._size;
         if: $session.size == undefined
             a: Вы сказали: "{{$request.query}}". Но растения такого размера я не знаю, пожалуйста, укажите другой
-            go: /Уточнение размера
+            #go: /Уточнение размера
         else: 
             a: вы выбрали размер {{$session.size}}
             a: Какой тип растения вы бы хотели?
-            go: /Уточнение типа
+            #go: /Уточнение типа
         buttons:
             "Не указывать" -> /Уточнение типа
         event: noMatch || toState = "./"
@@ -64,7 +64,7 @@ theme: /
             $session.type = $parseTree._type;
         if: $session.type == undefined
             a: Вы сказали: "{{$request.query}}". Но растения такого типа я не знаю, пожалуйста, укажите другой
-            go: /Уточнение типа
+            #go: /Уточнение типа
         else: 
             a: вы выбрали тип {{$session.type}}
             go!: /Подбор растений
