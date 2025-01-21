@@ -27,9 +27,9 @@ theme: /
     state: Уточнение цвета
         intent!: /Уточнение цвета
         script:
-            $session.color = undefined
-            $session.size = undefined
-            $session.type = undefined
+            $session.color = null
+            $session.size = null
+            $session.type = null
             
             $session.color = $parseTree._color.date;
         if: $session.color == undefined
