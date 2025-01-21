@@ -31,13 +31,15 @@ theme: /
     state: Уточнение цвета
         intent!: /Уточнение цвета
         script:
-            $session.color = $parseTree._color?.date;
-        if: $session.color == undefined
-            a: Вы сказали: "{{$request.query}}". Но растения такого цвета я не знаю, пожалуйста, укажите другой
-            #go: /Уточнение цвета
-        else:
-            $session.color = $parseTree._color.date;
-            a: вы выбрали цвет {{$session.color}}
+            if ($parseTree._color != undefined && $parseTree._color.date != undefined) {
+                $session.color = $parseTree._color.date;
+            } else {
+                $session.color = null;
+            }
+        if: $session.color == null
+            a: Вы сказали: "{{$request.query}}". Но растения такого цвета я не знаю, пожалуйста, укажите другой.
+        else: 
+            a: вы выбрали цвет {{$session.color}}.
             a: Какого размера растение вы бы хотели?
             go: /Уточнение размера
         buttons:
