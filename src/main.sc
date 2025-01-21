@@ -27,6 +27,10 @@ theme: /
     state: Уточнение цвета
         intent!: /Уточнение цвета
         script:
+            $session.color = undefined
+            $session.size = undefined
+            $session.type = undefined
+            
             $session.color = $parseTree._color.date;
         if: $session.color == undefined
             a: Вы сказали: "{{$request.query}}". Но растения такого цвета я не знаю, пожалуйста, укажите другой
