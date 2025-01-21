@@ -182,29 +182,29 @@
     "enabled" : true,
     "shared" : false,
     "phrases" : [ {
-      "text" : "Нужен цветок для @Recipient"
+      "text" : "Нужен цветок для @recipient"
     }, {
-      "text" : "Заказать цветы для @Recipient"
+      "text" : "Заказать цветы для @recipient"
     }, {
-      "text" : "Купить растение @Recipient"
+      "text" : "Купить растение @recipient"
     }, {
-      "text" : "Хочу купить растение для @Recipient"
+      "text" : "Хочу купить растение для @recipient"
     }, {
-      "text" : "Хочу белый цветок в подарок @Recipient"
+      "text" : "Хочу белый цветок в подарок @recipient"
     }, {
-      "text" : "@Recipient"
+      "text" : "@recipient"
     }, {
-      "text" : "Купить растение для @Recipient"
+      "text" : "Купить растение для @recipient"
     }, {
-      "text" : "Хочу горшок с растением для @Recipient"
+      "text" : "Хочу горшок с растением для @recipient"
     }, {
-      "text" : "Заказать декоративное растение @Recipient"
+      "text" : "Заказать декоративное растение @recipient"
     }, {
-      "text" : "Ищу дерево или куст для @Recipient"
+      "text" : "Ищу дерево или куст для @recipient"
     }, {
-      "text" : "Подобрать уличное растение для @Recipient"
+      "text" : "Подобрать уличное растение для @recipient"
     }, {
-      "text" : "Какой подарок из растений подойдет для @Recipient?"
+      "text" : "Какой подарок из растений подойдет для @recipient?"
     } ],
     "classificationRules" : {
       "refs" : [ ]
@@ -213,7 +213,7 @@
     "slots" : [ {
       "name" : "recipient",
       "entity" : "recipient",
-      "required" : true,
+      "required" : false,
       "prompts" : [ ]
     } ],
     "priority" : 0
@@ -514,35 +514,35 @@
     "records" : [ {
       "type" : "synonyms",
       "rule" : [ "Бабушка", "Бабушки", "Бабушке", "Бабушкой", "Бабушек", "бабушке", "бабушек" ],
-      "value" : "{\n  \"date\": \"Бабушки\"\n}"
+      "value" : "{\n  \"date\": \"бабушки\"\n}"
     }, {
       "type" : "synonyms",
       "rule" : [ "Дедушка", "Дедушки", "Дедушке", "Дедушкой", "Дедушек" ],
-      "value" : "{\n  \"date\": \"Дедушки\"\n}"
+      "value" : "{\n  \"date\": \"дедушки\"\n}"
     }, {
       "type" : "synonyms",
       "rule" : [ "Мама", "Мамы", "Маме", "Мамой", "Мам" ],
-      "value" : "{\n  \"date\": \"Мамы\"\n}"
+      "value" : "{\n  \"date\": \"мамы\"\n}"
     }, {
       "type" : "synonyms",
       "rule" : [ "Отец", "Отецы", "Отцу", "Отцом", "Отцов" ],
-      "value" : "{\n  \"date\": \"Отца\"\n}"
+      "value" : "{\n  \"date\": \"отца\"\n}"
     }, {
       "type" : "synonyms",
       "rule" : [ "Сестра", "Сестры", "Сестре", "Сестрой", "Сестёр" ],
-      "value" : "{\n  \"date\": \"Сестры\"\n}"
+      "value" : "{\n  \"date\": \"сестры\"\n}"
     }, {
       "type" : "synonyms",
       "rule" : [ "Брат", "Братья", "Брату", "Братом", "Братьев" ],
-      "value" : "{\n  \"date\": \"Брата\"\n}"
+      "value" : "{\n  \"date\": \"брата\"\n}"
     }, {
       "type" : "synonyms",
       "rule" : [ "Сын", "Сына", "Сыну", "Сыном", "Сыновья", "Сыновей" ],
-      "value" : "{\n  \"date\": \"Сына\"\n}"
+      "value" : "{\n  \"date\": \"сына\"\n}"
     }, {
       "type" : "synonyms",
       "rule" : [ "Дочь", "Дочери", "Дочерей", "Дочкой", "Дочками" ],
-      "value" : "{\n  \"date\": \"Дочери\"\n}"
+      "value" : "{\n  \"date\": \"дочери\"\n}"
     } ]
   }, {
     "entity" : {

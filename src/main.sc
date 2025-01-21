@@ -5,11 +5,12 @@ theme: /
             $session.color = null
             $session.size = null
             $session.type = null
+            $session.test = 0
         q!: $regex</start>
         a: Здравствуйте! Чем могу помочь?
+        a: {{$session.test}}
         buttons:
             {text: "Наш сайт", url: "https://elovpark.ru/"}
-            "Корзина" -> /Корзина
         go: /Оформление заказа
         event: noMatch || toState = "/Обработка ответа"
         
