@@ -359,6 +359,24 @@
       "prompts" : [ "Пожалуйста, уточните тип растения" ]
     } ],
     "priority" : 0
+  }, {
+    "path" : "/Согласие",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "@agree"
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "slots" : [ {
+      "name" : "agree",
+      "entity" : "agree",
+      "required" : false,
+      "prompts" : [ ]
+    } ],
+    "priority" : 0
   } ],
   "entities" : [ {
     "entity" : {
@@ -692,6 +710,25 @@
     }, {
       "type" : "synonyms",
       "rule" : [ "Дерево" ],
+      "value" : ""
+    } ]
+  }, {
+    "entity" : {
+      "name" : "agree",
+      "enabled" : true,
+      "shared" : false,
+      "type" : "annotation",
+      "priority" : 1,
+      "noSpelling" : true,
+      "noMorph" : false,
+      "phoneticSearch" : false,
+      "fuzzySearch" : false,
+      "client" : false,
+      "hidden" : false
+    },
+    "records" : [ {
+      "type" : "synonyms",
+      "rule" : [ "Да", "Хорошо", "Конечно", "Правильно" ],
       "value" : ""
     } ]
   } ],
