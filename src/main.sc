@@ -67,15 +67,14 @@ theme: /
             #go: /Уточнение типа
         else: 
             a: вы выбрали тип {{$session.type}}
-            go!: /Согласие
+            go!: /Проверка
         buttons:
             "Не указывать" -> /Подбор растений
         event: noMatch || toState = "./"
         
         
     
-    state: Согласие
-        intent!: /Согласие
+    state: Проверка
         a: Вы задали следующие параметры: {{$session.color}}, {{$session.size}}, {{$session.type}}
         a: Все верно?
         
