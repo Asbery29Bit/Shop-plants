@@ -5,10 +5,9 @@ theme: /
             $session.color = null
             $session.size = null
             $session.type = null
-            $session.test = 0
+            $session.chose = false
         q!: $regex</start>
         a: Здравствуйте! Чем могу помочь?
-        a: {{$session.test}}
         buttons:
             {text: "Наш сайт", url: "https://elovpark.ru/"}
         go: /Оформление заказа
@@ -98,19 +97,30 @@ theme: /
         go!: /Проверка
     
     state: Проверка
+        script:
+            $session.chose = true;
         a: Вы задали следующие параметры: \n {{$session.color}}, {{$session.size}}, {{$session.type}}
         a: Все верно?
         event: noMatch || toState = "/Не понял"
         
     state: Согласие
         intent: /Согласие
-        go!: /Подбор растений
+        if: $session.chose == true
+            script: $session.chose = false
+            go!: /Подбор растений
+        else:
+            a: Извините я не понял, пожалуйста, повторите запрос
+
         
     state: Несогласие
         intent: /Несогласие
-        a: Хорошо, давайте начнем сначала
-        a: Какого цвета растение вы бы хотели?
-        go: /Уточнение цвета
+        if: $session.chose == true
+            script: $session.chose = false
+            a: Хорошо, давайте начнем сначала
+            a: Какого цвета растение вы бы хотели?
+            go: /Уточнение цвета
+        else:
+            a: Извините я не понял, пожалуйста, повторите запрос
             
     
     state: Подбор растений
@@ -149,6 +159,6 @@ theme: /
                 {{$temp.plantMessages}}
         else: 
             # Если растения не найдены или произошла ошибка
-            a: Не удалось найти растения по вашим параметрам. Попробуй ещё раз.
+            a: Не удалось найти растения по вашим параметрам. Попробуйте ещё раз.
         buttons:
             "Вернутся в начало" -> /Приветствие
