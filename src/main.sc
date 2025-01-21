@@ -1,6 +1,9 @@
 theme: /
     
     state: Приветствие
+        $session.color = 0
+        $session.size = 0
+        $session.type = 0
         q!: $regex</start>
         a: Здравствуйте! Чем могу помочь?
         buttons:
@@ -27,10 +30,6 @@ theme: /
     state: Уточнение цвета
         intent!: /Уточнение цвета
         script:
-            $session.color = 0
-            $session.size = 0
-            $session.type = 0
-            
             $session.color = $parseTree._color.date;
         if: $session.color == undefined
             a: Вы сказали: "{{$request.query}}". Но растения такого цвета я не знаю, пожалуйста, укажите другой
